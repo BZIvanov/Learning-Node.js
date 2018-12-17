@@ -1,0 +1,11 @@
+{
+  "name": "expressjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http-demo.js",
+  "scripts": {
+    "start": "node http-demo.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
