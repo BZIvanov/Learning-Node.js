@@ -12,7 +12,7 @@ function frontController(req, res) {
     res.writeHead(200, {
         'content-type': 'text/html'
     });
-    // write method on the response is what will be displayed. This method is the body of the response
+    // write method on the response is what will be displayed. This method is the body of the response. write method can only write strings, for example it will not work with image
     res.write('<h1>Welcome</h1>');
     // end method from the response is important so the browser will know we are ready with response otherwise it will be stuck waiting on us
     res.end();

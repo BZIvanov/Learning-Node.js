@@ -40,6 +40,15 @@ function frontController(req, res) {
             res.write(data);
             res.end();
         });
+    } else if(path === '/app.js') {
+        // here this time we get js file
+        fs.readFile('./app.js', 'utf8', (err, data) => {
+            res.writeHead(200, {
+                'content-type': 'application/javascript'
+            });
+            res.write(data);
+            res.end();
+        });
     } else {
         fs.readFile('./error.html', 'utf8', (err, data) => {
             res.writeHead(404, {
