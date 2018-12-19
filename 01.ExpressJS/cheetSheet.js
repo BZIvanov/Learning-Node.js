@@ -324,8 +324,8 @@ fs.write(fd, buffer, offset, length, position, callback);  // Write buffer to th
 fs.writeSync(fd, buffer, offset, length, position);        // Synchronous version of fs.write(). Returns the number of bytes written.
 fs.read(fd, buffer, offset, length, position, callback);   // Read data from the file specified by fd.
 fs.readSync(fd, buffer, offset, length, position);         // Synchronous version of fs.read. Returns the number of bytesRead.
-fs.readFile(filename, [options], callback);                // Asynchronously reads the entire contents of a file.
-fs.readFileSync(filename, [options]);                      // Synchronous version of fs.readFile. Returns the contents of the filename. If the encoding option is specified then this function returns a string. Otherwise it returns a buffer.
+fs.readFile(filename, [options], callback);                // Asynchronously reads the entire contents of a file. EXAMPLE: fs.readFile('./package.json', 'utf8', (err, data) => { console.log(data) });
+fs.readFileSync(filename, [options]);                      // Synchronous version of fs.readFile. Returns the contents of the filename. If the encoding option is specified then this function returns a string. Otherwise it returns a buffer. EXAMPLE: let data = fs.readFileSync('./package.json', 'utf8');
 
 fs.writeFile(filename, data, [options], callback);   // Asynchronously writes data to a file, replacing the file if it already exists. data can be a string or a buffer.
 fs.writeFileSync(filename, data, [options]);         // The synchronous version of fs.writeFile.
