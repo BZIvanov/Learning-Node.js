@@ -16,7 +16,9 @@ require('./config/db').then(() => {
           break
         }
       }
-    }).listen(port)
+    }).listen(port, () => {
+      console.log(`Listening on port ${port}...`);
+    })
 }).catch((err) => {
   // here we will throw the error not just print it because if we fail to load database we want everything to stop
   throw err;
