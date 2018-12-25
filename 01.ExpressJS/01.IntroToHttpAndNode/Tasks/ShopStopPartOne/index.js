@@ -1,5 +1,5 @@
 const http = require('http');
-const port = 3000;
+const port = 5000;
 // in handlers folder we have many files, but by default if we have index file in the folder it will be loaded even if we dont specify its name
 const handlers = require('./handlers');
 
