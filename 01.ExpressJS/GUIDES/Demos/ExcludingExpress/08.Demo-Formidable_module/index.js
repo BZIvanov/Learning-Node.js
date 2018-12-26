@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const formidable = require('formidable');
+const shortid = require('shortid');
 
 http.createServer((req, res) => {
     if(req.method === 'GET') {
@@ -17,7 +18,19 @@ http.createServer((req, res) => {
             res.end();
         });
     } else if(req.method === 'POST') {
+        // here with shortid module we will generate some random name for the new file. This will also help to overwrite files with equal names
+        let randomName = shortid.generate();
+
         let form = new formidable.IncomingForm();
+
+        // we will first check for event error, if there is any we return
+        form.on('error', (err) => {
+            console.log(err);
+            return
+        }).on('fileBegin', (name, file) => {
+            // with fileBegin event we can save the image whereever we want before it start downloading in default folder
+            file.path = `./files/${randomName}.jpg`;
+        });
 
         // in the callback we receive error as first parameter, data from input fields and files from input fields
         form.parse(req, (err, fields, files) => {
@@ -28,26 +41,15 @@ http.createServer((req, res) => {
             //console.log(fields);
             // fields is object where the keys are like the names from the form inputs and values are from form input values
             let myName = fields.firstName;
-            let myPass = fields.password; 
+            let myPass = fields.password;
+            console.log(myName, myPass);
             
-            //console.log(files)
-            // myFile comes from the name attribute from the form
-            let file = files.myFile;
-            // after the files are usually stored in Temp Windows folder with below rows we will move the file in our project folder
-            let tempPath = file.path;
-            let fileName = file.name;
-
-            // with rename we move files from one folder to another
-            fs.rename(tempPath, './files/' + fileName, (err) => {
-                if(err) {
-                    console.log(err);
-                    return;
-                }
-
-                res.write('Thank you!');
-                res.end();
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
             });
+            res.write('<h1>Thank you</h1>');
+            res.end();
         })
     }
     
-}).listen(1337);
+}).listen(3000, () => console.log(`Listening on port ${3000}...`));
