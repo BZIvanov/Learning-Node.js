@@ -2,17 +2,17 @@ const mongoose = require('mongoose');
 
 // this is our schema which works as validation on data we receive and specify what columns of data we will have. Properties in the schema object are columns in database
 let chocolateSchema = new mongoose.Schema({
-    brand: { type: String, required: true, minlength: 3, unique: true },
-    ingredient: { type: Number, required: true, min:5, max: 15 },
-    color: { type: String }
+    brand: { type: mongoose.Schema.Types.String, required: true, minlength: 3, unique: true },
+    ingredient: { type: mongoose.Schema.Types.Number, required: true, min:5, max: 15 },
+    color: { type: mongoose.Schema.Types.String }
 });
 // here we tell that how our Collection in database will be called, in this example is Chocolate
 let Chocolate = mongoose.model('Chocolate', chocolateSchema);
 
 // this schema has third property eat which will be of type as another schema. Which means for eat property we need to provide records from the Chocolate collection
 let consumerSchema = new mongoose.Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    firstName: { type: mongoose.Schema.Types.String, required: true },
+    lastName: { type: mongoose.Schema.Types.String, required: true },
     eat: [Chocolate.schema]
 });
 let Consumer = mongoose.model('Consumer', consumerSchema);
