@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 let chocolateSchema = new mongoose.Schema({
-    brand: { type: String, required: true, minlength: 3, unique: true },
-    ingredient: { type: Number, required: true, min:5, max: 15 },
-    color: { type: String }
+    brand: { type: mongoose.Schema.Types.String, required: true, minlength: 3, unique: true },
+    ingredient: { type: mongoose.Schema.Types.Number, required: true, min:5, max: 15 },
+    color: { type: mongoose.Schema.Types.String }
 });
 
 // we can attach function to the schema on the methods property. Remember not to use arrow functions so "this" can work properly
