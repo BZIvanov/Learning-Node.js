@@ -5,13 +5,13 @@ const handlers = require('./handlers')
 const port = 5000
 
 let server = http.createServer((req, res) => {
-  req.pathname = url.parse(req.url).pathname
+    req.pathname = url.parse(req.url).pathname
 
-  for (let handler of handlers) {
-    if (handler(req, res) !== true) {
-      break
+    for (let handler of handlers) {
+        if (handler(req, res) !== true) {
+            break
+        }
     }
-  }
 })
 
 server.listen(port)
