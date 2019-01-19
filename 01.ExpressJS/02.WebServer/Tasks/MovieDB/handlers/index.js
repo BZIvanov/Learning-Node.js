@@ -1,11 +1,11 @@
-const homeHandler = require('./homeHandler')
-const errorHandler = require('./errorHandler')
-const staticHandler = require('./staticHandler')
-const moviesHandler = require('./movieHandler')
+const homeHandler = require('./home');
+const staticHandler = require('./static');
+const movieHandler = require('./movie');
+const errorHandler = require('./error');
 
-module.exports = [
-  homeHandler,
-  moviesHandler,
-  staticHandler,
-  errorHandler
-]
+module.exports = [ 
+    homeHandler,
+    staticHandler,
+    movieHandler,
+    errorHandler
+];

@@ -257,3 +257,8 @@ input[type=submit]:hover {
     margin-right: 15px;
     float: left;
 }
+
+.moviePoster {
+    width: auto;
+    height: 500px;
+}
