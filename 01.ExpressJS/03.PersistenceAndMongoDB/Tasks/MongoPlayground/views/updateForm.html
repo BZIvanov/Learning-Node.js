@@ -20,11 +20,11 @@
             <input type="text" name="description" value="DescriptionF"><br> Tags:
             <br>
             <input type="text" id='tagField' name="tags" value=""><br><br>
-            <input type="text" id='tagsId' style='display:none' name="tagsID" value="tagsF">
+            <input type="text" id='tagsId' style='display:none' name="tagsId" value="tagsF">
             <input type="submit" value="Submit">
             <br><br>
     </form>
-    <div class='replaceMe'></div>
+    <div class="replaceMe"></div>
     </fieldset>
 </body>
 
@@ -33,7 +33,6 @@
     let tagElements = document.querySelectorAll('.tag')
     let tagField = document.querySelector('#tagField')
     let tagsId = document.querySelector('#tagsId')
-
     for(let t of tagElements){
        t.addEventListener('click',function(){
            tagField.value+= this.innerText+','

@@ -1,77 +1,44 @@
-const fs = require('fs')
-const Image = require('mongoose').model('Image')
-const Tag = require('mongoose').model('Tag')
+const fs = require('fs');
+const path = require('path');
+let Image = require('../models/imageSchema');
 
-const qs = require('querystring')
-
-let imageTemplate = (image) => {
-    return `<fieldset id ="${image._id}" >
-  <img src="${image.url}"></img>
-  <p>${image.description}<p/>
-  <button onclick='location.href="/delete?id=${image._id}"'class='deleteBtn'>Delete
-  </button> 
-  </fieldset>`
-}
-
-let getImagesAndResponce = (res, data, params) => {
-    Image.find(params).then(images => {
-        let imageHtml = ''
-        if (res.Limit) {
-            images = images.slice(0, Number(res.Limit))
-        } else {
-            images = images.slice(0, 10)
-        }
-        images.sort((a, b) => b.creationDate - a.creationDate)
-
-        for (let img of images) {
-            imageHtml += imageTemplate(img)
-        }
-
-        data = data.replace('<div class="replaceMe"></div>', imageHtml)
-
-        res.writeHead(200, {
-            'Content-Type': 'text/html'
-        })
-        res.write(data)
-        res.end()
-    })
-}
 
 module.exports = (req, res) => {
-    if (req.pathname === '/search') {
-        fs.readFile('./views/results.html', 'utf8', (err, data) => {
-            if (err) {
-                res.displayError(err)
-            }
+  if (req.pathname === '/search' && req.method === 'GET') {
+    fs.readFile(path.join(__dirname, '../views/results.html'), (err, data) => {
 
-            const params = {}
+      if (err) {
+        console.log(err);
+        return;
+      }
 
-            if (req.pathquery.afterDate.length > 0) {
-                let afterDate = new Date(req.pathquery.afterDate)
-                params.creationDate = { $gt: afterDate }
-            }
-            if (req.pathquery.beforeDate.length > 0) {
-                let beforeDate = new Date(req.pathquery.beforeDate)
-                params.creationDate = { $lt: beforeDate }
-            }
-            if (req.pathquery.Limit) {
-                res.Limit = req.pathquery.Limit
-            }
+      res.writeHead(200, {
+        'Content-Type': 'text/html'
+      });
 
-            if (req.pathquery.tagName) {
-                const tags = req.pathquery.tagName.split(',').filter(e => e.length > 0)
-                if (tags.length > 0) {
-                    Tag.find({ name: { $in: tags } }).then((searchedTags) => {
-                        const tagsIds = searchedTags.map(m => m._id)
-                        params.tags = tagsIds
-                        getImagesAndResponce(res, data, params)
-                    })
-                }
-            } else {
-                getImagesAndResponce(res, data, params)
-            }
-        })
-    } else {
-        return true
-    }
-}
+      let result = '';
+
+      Image
+        .find({})
+        .then(images => {
+          for (let image of images) {
+            result += `<fieldset>
+                        <legend>${image.title}:</legend>
+                        <img src="${image.url}"/>
+                        <p>${image.description}</p>
+                        <button onclick='location.href="/delete?id=${image._id}"'class='deleteBtn'>Delete</button>
+                        </fieldset>`;
+          }
+
+          data = data.toString().replace('<div class="replaceMe"></div>', result);
+
+
+          res.end(data);
+        }).catch(err => {
+          console.log(err);
+        });
+    });
+  } else {
+    return true;
+  }
+};
