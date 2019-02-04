@@ -8,4 +8,4 @@ require('./config/express')(app, config[env])
 require('./config/passport')()
 require('./config/routes')(app)
 
-app.listen(3000)
+app.listen(3000, () => console.log('Listening on port 3000'))

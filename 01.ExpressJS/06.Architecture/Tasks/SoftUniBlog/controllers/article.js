@@ -36,10 +36,28 @@ module.exports = {
             .catch(console.error);
     },
     editGet: (req, res) => {
+        const articleId = req.params.articleId;
 
+        Article.findById(articleId)
+            .then((article) => {
+                res.render('article/edit', article);
+            })
+            .catch(console.error);
     },
     editPost: (req, res) => {
-
+        const articleId = req.params.articleId;
+        let articleBody = req.body;
+        
+        Article.findById(articleId)
+            .then((article) => {
+                article.title = articleBody.title;
+                article.content = articleBody.content;
+                return article.save();
+            })
+            .then(() => {
+                res.redirect('/');
+            })
+            .catch(console.error);
     },
     deleteGet: (req, res) => {
         let articleId = req.params.articleId;
@@ -51,14 +69,12 @@ module.exports = {
     },
     deletePost: (req, res) => {
         let articleId = req.params.articleId;
-        console.log(articleId)
         Article.findById(articleId)
             .then((a) => {
-                console.log(a)
                 return Article.deleteOne({ _id: a._id});
             })
             .then(() => {
-                req.user.articles = req.user.articles.filter(a !== articleId);
+                req.user.articles = req.user.articles.filter(a => a.toString() !== articleId);
                 return req.user.save();
             })
             .then(() => {
