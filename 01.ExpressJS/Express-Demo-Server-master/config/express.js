@@ -7,6 +7,7 @@ const passport = require('passport');
 
 module.exports = app => {
     app.engine('.hbs', handlebars({
+        layoutsDir: 'views/layouts',
         defaultLayout: 'main',
         extname: '.hbs'
     }));
