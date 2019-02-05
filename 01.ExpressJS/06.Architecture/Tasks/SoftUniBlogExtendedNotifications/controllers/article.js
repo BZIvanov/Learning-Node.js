@@ -56,6 +56,7 @@ module.exports = {
                 return article.save();
             })
             .then(() => {
+                req.session.message = "Successfully edited article";
                 res.redirect('/');
             })
             .catch(console.error);
@@ -79,6 +80,7 @@ module.exports = {
                 return req.user.save();
             })
             .then(() => {
+                req.session.message = "Successfully deleted article";
                 res.redirect('/');
             })
             .catch(console.error);

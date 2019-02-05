@@ -7056,3 +7056,24 @@ article .author  {
 article .author  {
   content: '\2014 \00A0';
 }
+
+
+body div.message {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+  color: white;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: #258cd1;
+  animation: cssAnimation 0s ease-in 3s forwards;
+  animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+  to {
+      padding: 0;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+  }
+}
