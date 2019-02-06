@@ -34,6 +34,7 @@ module.exports = (app, config) => {
         if (req.user) {
             res.locals.isAuth = req.user.isInRole('User');
             res.locals.isAdmin = req.user.isInRole('Admin');
+            res.locals.userEmail = req.user.email;
         }
         next();
     });
