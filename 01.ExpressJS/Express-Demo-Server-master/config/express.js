@@ -32,6 +32,7 @@ module.exports = app => {
 
     app.use((req, res, next) => {
         if (req.user) {
+            res.locals.isAuth = req.user.isInRole('User');
             res.locals.isAdmin = req.user.roles.indexOf('Admin') !== -1;
         }
         next();

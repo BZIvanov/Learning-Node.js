@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
 userSchema.method({
     authenticate: function (password) {
         return encryption.generateHashedPassword(this.salt, password) === this.hashedPass;
+    },
+
+    isInRole: function (role) {
+        return this.roles.indexOf(role) !== -1;
     }
 });
 
