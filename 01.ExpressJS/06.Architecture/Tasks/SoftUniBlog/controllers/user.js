@@ -85,5 +85,14 @@ module.exports = {
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
+    },
+
+    details: (req, res) => {
+        const userId = req.user._id;
+        User.findById(userId)
+            .then((user) => {
+                res.render('user/details', user);
+            })
+            .catch(console.error);
     }
 };
