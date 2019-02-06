@@ -10,6 +10,7 @@ module.exports = (app) => {
     app.get('/user/login', restrictedPages.isAnonymous, controllers.userController.loginGet);
     app.post('/user/login', restrictedPages.isAnonymous, controllers.userController.loginPost);
     app.get('/user/logout', restrictedPages.isAuthed, controllers.userController.logout);
+    app.get('/user/details', restrictedPages.isAuthed, controllers.userController.details);
 
     // Article routes
     app.get('/article/create', restrictedPages.isAuthed, controllers.articleController.createGet);
