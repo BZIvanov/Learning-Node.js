@@ -5,6 +5,7 @@ module.exports = {
     registerGet: (req, res) => {
         res.render('users/register');
     },
+    // async and awaits must always be wrapped in try catch block in case of error
     registerPost: async (req, res) => {
         const reqUser = req.body;
         const salt = encryption.generateSalt();
