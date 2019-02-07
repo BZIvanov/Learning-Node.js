@@ -1,32 +1,29 @@
-<h1>Chatroom with {{username}}</h1>
+<h1>Chatroom with {{otherUserUsername}}</h1>
 
-<form method="POST" class="chat-form" action="/block/{{username}}">
+<form method="POST" class="chat-form" action="/block/{{otherUserUsername}}">
     <button class="btn btn-danger" type="submit">Block</button>
 </form>
 
 <div class="chat-wrapper">
     <div id="message-wrapper">
         {{#each messages}}
-
+            {{#if isImage}}
+                <div class="message-row">
+                    <img class="thread-message {{direction}}" src="{{content}}">
+                </div>
+            {{else}}
+                <div class="message-row">
+                    <span class="thread-message {{direction}}">{{content}}</span>
+                </div>
+            {{/if}}
         {{else}}
+            <p>You haven't chatted yet. DO IT now!!!</p>
         {{/each}}
-        <div class="message-row">
-            <span class="thread-message left">hello pesho</span>
-        </div>
-        <div class="message-row">
-            <span class="thread-message right">hello gosho</span>
-        </div>
-        <div class="message-row">
-            <img class="thread-message left" src="https://cdn.japantimes.2xx.jp/wp-content/uploads/2017/03/p9-wellsaid-a-20170321-200x200.jpg">
-        </div>
-        <div class="message-row">
-            <span class="thread-message left">here is my cat</span>
-        </div>
     </div>
 
     <form method="POST" class="chat-form" action="/message/send">
         <textarea rows="5" name="message" placeholder="message"></textarea>
-        <input value="5c540d5fac257e190c076fc0" name="threadId" hidden />
+        <input value="{{targetThreadId}}" name="threadId" hidden />
         <button class="btn btn-primary send" type="submit">Send</button>
     </form>
 </div>
