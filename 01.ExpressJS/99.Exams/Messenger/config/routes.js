@@ -11,6 +11,7 @@ module.exports = app => {
     app.post('/users/login', controllers.user.loginPost);
 
     app.post('/threads/find', controllers.threads.findUser);
+    app.post('/message/send', controllers.threads.sendMessage);
 
     app.all('*', (req, res) => {
         res.status(404);
