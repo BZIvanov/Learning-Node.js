@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const messageSchema = new mongoose.Schema({
-    constent: { 
+    content: { 
         type: mongoose.Schema.Types.String,
         required: [true, 'Message require some content please :(']
     },
