@@ -3,6 +3,7 @@ const Post = require('../models/Post');
 const User = require('../models/User');
 
 function validatePost(req, res) {
+  // errors here are from the middleware validators in routes folder files. The middleware validators with square brackets
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
      res.status(422).json({
@@ -30,6 +31,7 @@ module.exports = {
           error.statusCode = 500;
         }
 
+        // the next below will go to General error middleware handler in  the index.js file
         next(error);
       });
   },
@@ -78,6 +80,7 @@ module.exports = {
         if (!post) {
           const error = new Error('Post not found!');
           error.statusCode = 404;
+          // throwing the error will go to catch where with next we will call the global middleware error handler
           throw error;
         }
 
@@ -93,6 +96,7 @@ module.exports = {
         return User.findById(req.userId);
       })
       .then((user) => {
+        // pull is mongoose method which will find the item and remove it. In this case we will find the id and remove it
         user.posts.pull(postId);
         return user.save();
       })
@@ -103,6 +107,7 @@ module.exports = {
         })
       })
       .catch((error) => {
+        // if the error thrown from if's above is server error we will go directly here without going throug if's so we need to set status code here
         if (!error.statusCode) {
           error.statusCode = 500;
         }

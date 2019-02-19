@@ -37,6 +37,7 @@ module.exports = {
           error.statusCode = 500;
         }
 
+        // the next below will go to General error middleware handler in  the index.js file
         next(error);
       });
     }
@@ -77,6 +78,7 @@ module.exports = {
           error.statusCode = 500;
         }
 
+        // the next below will go to General error middleware handler in  the index.js file
         next(error);
       })
   }

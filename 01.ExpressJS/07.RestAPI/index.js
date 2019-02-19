@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 
-// General error handling
+// General error handling. This middleware MUST be defined last because we will get to it if error occures in controllers and there we will call this middleware
 app.use((error, req, res, next) => {
   const status = error.statusCode || 500;
   const message = error.message;
