@@ -25,7 +25,7 @@ class RegisterForm extends React.Component {
                 <form onSubmit={(event) => {
                     // TODO: prevent the default behavior of the event and use the registerUser function by passing it the data from the form
                     event.preventDefault();
-                    console.log(this.state);
+                    this.props.registerUser(this.state);
                 }}>
                     <label>Username</label>
                     {/* Example how to do it without bind: onChange={(e) => this.handleChange(e)} */}
