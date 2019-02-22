@@ -14,61 +14,46 @@ class App extends Component {
             games: [],
             hasFetched: false,
             loginForm: false,
+            showSnack: false,
+            message: null
         }
+    }
+
+    postToAuth(user, ending) {
+        fetch('http://localhost:9999/auth/sign' + ending, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(response => response.json())
+        .then(body => {
+            if (body.errors) {
+                body.errors.forEach(error => {
+
+                });
+            }
+            else {
+                localStorage.setItem('username', body.username);
+                localStorage.setItem('userId', body.userId);
+                this.setState({
+                    user: body.username,
+                    message: body.message,
+                    showSnack: true
+                });
+            }
+        })
     }
 
     registerUser(user) {
         // TODO: register a user and login
-        fetch('http://localhost:9999/auth/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(response => response.json())
-        .then(body => {
-            if (body.errors) {
-                body.errors.forEach(error => {
-
-                });
-            }
-            else {
-                //Add new user to the system
-                localStorage.setItem('username', body.username);
-                localStorage.setItem('userId', body.userId);
-                this.setState({
-                    user: body.username
-                });
-            }
-        })
+        this.postToAuth(user, 'up');
     }
 
     loginUser(user) {
         // TODO: login a user and set sessionStorage items username and token
-        fetch('http://localhost:9999/auth/signin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(response => response.json())
-        .then(body => {
-            if (body.errors) {
-                body.errors.forEach(error => {
-
-                });
-            }
-            else {
-                //Add new user to the system
-                localStorage.setItem('username', body.username);
-                localStorage.setItem('userId', body.userId);
-                this.setState({
-                    user: body.username
-                });
-            }
-        })
+        this.postToAuth(user, 'in');
     }
 
     logout(event) {
@@ -78,7 +63,9 @@ class App extends Component {
         localStorage.removeItem('username');
         localStorage.removeItem('userId');
         this.setState({
-            user: null
+            user: null,
+            message: 'Successfully logged out!',
+            showSnack: true
         });
     }
 
@@ -91,11 +78,40 @@ class App extends Component {
             });
         }
        // TODO: fetch all the games
+       this.fetchGames();
     }
 
     createGame(data) {
         // TODO: create a game using fetch with a post method then fetch all the games and update the state 
-        
+        fetch('http://localhost:9999/feed/game/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(body => {
+            if (body.errors) {
+                body.errors.forEach(error => {
+                    console.log(error);
+                });
+            }
+            else {
+                // game added
+                this.fetchGames();
+            }
+        })
+    }
+
+    fetchGames() {
+        fetch('http://localhost:9999/feed/games')
+            .then(rawData => rawData.json())
+            .then(body => this.setState({
+                games: body.games,
+                message: body.message,
+                showSnack: true
+            }))
     }
 
     switchForm() {
@@ -122,7 +138,7 @@ class App extends Component {
                     user={this.state.user}
                     loginForm={this.state.loginForm}
                 />
-                <AppFooter/>
+                <AppFooter message={this.state.message} showSnack={this.state.showSnack} />
             </main>
         )
     }
