@@ -19,3 +19,6 @@ If you are working with **Angular 7** you will be asked the following question:
 
 ### Starting the project
 To start the project run `ng serve` or it's shorthand syntax `ng s`.
+
+### Creating component
+To create component you need to run in the terminal `ng generate component someName` or you can use shorthand syntax `ng g c someName`. Note that you have to stop the application to create component.
