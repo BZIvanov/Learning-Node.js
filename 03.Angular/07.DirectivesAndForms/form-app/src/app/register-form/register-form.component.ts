@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterFormComponent implements OnInit {
   phoneNumbers: Array<string> = ['+359', '+721', '+123'];
+  // ViewChild decorator is used when we will work with html file from the same component
+  @ViewChild('form')
+  htmlForm: NgForm;
 
   constructor() { }
 
@@ -14,7 +18,9 @@ export class RegisterFormComponent implements OnInit {
   }
 
   register(formData) {
-    console.log(formData);
+    if (!this.htmlForm.invalid) {
+      this.htmlForm.reset();
+    }
   }
 
 }
