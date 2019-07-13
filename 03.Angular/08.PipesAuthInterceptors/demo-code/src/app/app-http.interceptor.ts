@@ -8,22 +8,22 @@ const apiURL = environment.apiURL;
 export class AppHttpInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // let newHeaders = {
-    //   'Content-Type': 'application/json',
-    //   Authorization: ''
-    // };
+    let newHeaders = {
+      'Content-Type': 'application/json',
+      Authorization: ''
+    };
 
     const token = localStorage.getItem('token');
     if (req.url.includes('feed')) {
-      // newHeaders = {
-      //   'Content-Type': 'application/json',
-      //   Authorization: `Bearer ${token}`
-      // };
+      newHeaders = {
+        'Content-Type': 'application/json',
+         Authorization: `Bearer ${token}`
+      };
     }
 
     return next.handle(req.clone({
       url: `${apiURL}/${req.url}`,
-      withCredentials: req.url.includes('feed')
+      setHeaders: newHeaders
     })).pipe(catchError());
   }
 }
