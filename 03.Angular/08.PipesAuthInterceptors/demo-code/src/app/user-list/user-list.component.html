@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let user of users; let i = index">
+    First Name : {{user.firstName}} / Post Count: {{ posts | postCount : user.id : i }}
+  </li>
+</ul>
