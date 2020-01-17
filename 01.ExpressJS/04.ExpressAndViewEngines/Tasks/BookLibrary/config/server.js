@@ -6,7 +6,7 @@ module.exports = (app) => {
     // here we set express working with handlebars
     app.engine('hbs', handlebars({
         extname: '.hbs',
-        // layoutsDir and defaultLayout are predefined properties which set default view for each page. layoutsDir specify directory where the view can be found and defaultLayout property specify the name of the file used for view
+        // layoutsDir and defaultLayout are predefined properties which set default view for each page. layoutsDir specify directory where the view can be found and defaultLayout property specify the name of the file used for view placed in folder views > layouts
         layoutsDir: 'views/layouts',
         defaultLayout: 'main'
     }));
