@@ -10,6 +10,8 @@ module.exports = (req, res, next) => {
   const token = req.get('Authorization').split(' ')[1];
   let decodedToken;
   try {
+    // verify function is from jsonwebtoken and with it we will decode the token to extract the id from it
+    // we know, that we will have userId field in the token, because we use that field, when creating the token in the sign function provided by jwt
     decodedToken = jwt.verify(token, 'somesupersecret')
   } catch(error) {
     return res.status(401)
