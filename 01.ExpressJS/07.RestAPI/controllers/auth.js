@@ -59,6 +59,7 @@ module.exports = {
           throw error;
         }
 
+        // sign function is from jsonwebtoken and with it we will create the toke and provide it to the user
         const token = jwt.sign({ 
           email: user.email,
           userId: user._id.toString()
