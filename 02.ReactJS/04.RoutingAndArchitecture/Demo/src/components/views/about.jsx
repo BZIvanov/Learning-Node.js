@@ -2,28 +2,22 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 const Contact = () => {
-    return (
-        <div>
-            This is the contacts page
-        </div>
-    );
+  return <div>This is the contacts page</div>;
 };
 
 const AboutContent = () => {
-    return (
-        <h1>This is the About page</h1>
-    );
+  return <h1>This is the About page</h1>;
 };
 
 const About = (props) => {
-    const { path } = props.match;
+  const { path } = props.match;
 
-    return (
-        <div>
-            <Route path={`${path}/`} component={AboutContent} exact />
-            <Route path={`${path}/contact`} component={Contact} exact />
-        </div>
-    );
+  return (
+    <div>
+      <Route path={`${path}/`} component={AboutContent} exact />
+      <Route path={`${path}/contact`} component={Contact} exact />
+    </div>
+  );
 };
 
 export default About;

@@ -6,45 +6,44 @@ import AppFooter from "./App/AppFooter";
 
 
 class App extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: null,
-            games: [],
-            hasFetched: false,
-            loginForm: false,
-            showSnack: false,
-            message: null
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      games: [],
+      hasFetched: false,
+      loginForm: false,
+      showSnack: false,
+      message: null
     }
+  }
 
-    postToAuth(user, ending) {
-        fetch('http://localhost:9999/auth/sign' + ending, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(response => response.json())
-        .then(body => {
-            if (body.errors) {
-                body.errors.forEach(error => {
+  postToAuth(user, ending) {
+    fetch('http://localhost:9999/auth/sign' + ending, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(response => response.json())
+    .then(body => {
+      if (body.errors) {
+        body.errors.forEach(error => {
 
-                });
-            }
-            else {
-                localStorage.setItem('username', body.username);
-                localStorage.setItem('userId', body.userId);
-                this.setState({
-                    user: body.username,
-                    message: body.message,
-                    showSnack: true
-                });
-            }
-        })
-    }
+        });
+      }
+      else {
+        localStorage.setItem('username', body.username);
+        localStorage.setItem('userId', body.userId);
+        this.setState({
+          user: body.username,
+          message: body.message,
+          showSnack: true
+        });
+      }
+    })
+  }
 
     registerUser(user) {
         // TODO: register a user and login
