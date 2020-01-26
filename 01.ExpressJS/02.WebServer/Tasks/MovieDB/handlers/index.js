@@ -4,8 +4,8 @@ const movieHandler = require('./movie');
 const errorHandler = require('./error');
 
 module.exports = [ 
-    homeHandler,
-    staticHandler,
-    movieHandler,
-    errorHandler
+  homeHandler,
+  staticHandler,
+  movieHandler,
+  errorHandler
 ];

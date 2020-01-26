@@ -29,11 +29,11 @@ module.exports = (app, config) => {
 	});
 
     //Configure "public" folder
-    app.use((req, res, next) => { 
+    app.use((req, res, next) => {
         if (req.url.startsWith('/content')) {
             req.url = req.url.replace('/content', '');
         }
         next();
-    }, 
+    },
     express.static(path.normalize(path.join(config.rootPath, 'content'))));
 }

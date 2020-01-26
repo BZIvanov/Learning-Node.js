@@ -8,7 +8,8 @@ module.exports.addGet = (req, res) => {
 }
 
 module.exports.addPost = async (req, res) => {
-    let productObj = req.body;
+		let productObj = req.body;
+		// with the req.file we can see info about the image we are uploading
     productObj.image = '\\' + req.file.path;
     productObj.creator = req.user._id;
 

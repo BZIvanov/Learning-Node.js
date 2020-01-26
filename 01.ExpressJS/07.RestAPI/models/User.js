@@ -3,25 +3,11 @@ const encryption = require('../util/encryption');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  email: {
-    type: Schema.Types.String,
-    required: true
-  },
-  hashedPassword: {
-    type: Schema.Types.String,
-    required: true
-  },
-  name: {
-    type: Schema.Types.String,
-    required: true
-  },
-  salt: {
-    type: Schema.Types.String,
-    required: true
-  },
-  posts: [
-    { type: Schema.Types.ObjectId, ref: 'Post' }
-  ]
+  email: {type: Schema.Types.String, required: true, match: /[a-z]@[a-z]\.[a-z]/},
+  hashedPassword: {type: Schema.Types.String, required: true},
+  name: {type: Schema.Types.String, required: true},
+  salt: {type: Schema.Types.String, required: true},
+  posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 });
 
 userSchema.method({
