@@ -1,17 +1,17 @@
 class Box<T> {
-    private _boxes = [];
+  private _boxes = [];
 
-    public add(el: T) {
-        this._boxes.push(el);
-    }
+  public add(el: T) {
+    this._boxes.push(el);
+  }
 
-    public remove(): void {
-        this._boxes.pop();
-    }
+  public remove(): void {
+    this._boxes.pop();
+  }
 
-    get count(): number {
-        return this._boxes.length;
-    }
+  get count(): number {
+    return this._boxes.length;
+  }
 }
 
 let box = new Box<Number>();
