@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-*{
+* {
     box-sizing: border-box;
 }
 *:before, *:after{
@@ -52,16 +52,12 @@ div.welcome-wrapper {
     margin: 0 auto;
     padding: 3em 0;
     text-align: center;
-   
-
 }
 
 div.welcome-wrapper p{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
-
 }
 
 div.welcome {
@@ -78,7 +74,6 @@ div.welcome a {
     color: white;
     margin: 10px;
     border: 2px solid rgb(88, 182, 92);
-    
 }
 
 div.welcome a:hover {
@@ -119,8 +114,7 @@ div.welcome p {
    padding: 10px 5px;
    outline: none;
    border-radius: 0.5em;
-   border: 1px solid rgb(88, 182, 92);   
-   
+   border: 1px solid rgb(88, 182, 92);
 }
 
 
