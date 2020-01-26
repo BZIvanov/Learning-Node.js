@@ -34,7 +34,6 @@ let add = (movie) => {
 }
 
 let dbCopy = () => {
-
   return db.slice(0)
 }
 

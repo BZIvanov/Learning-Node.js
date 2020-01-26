@@ -27,6 +27,7 @@ router.post('/signup',
       .withMessage('Please enter a valid name.')
   ]
 , authController.signUp);
+
 router.post('/signin', authController.signIn);
 
 module.exports = router;
