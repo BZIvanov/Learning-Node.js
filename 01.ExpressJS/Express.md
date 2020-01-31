@@ -20,3 +20,17 @@ show dbs;
 ```
 
 The expected result is to see names of the databases we have and space in GBs they take.
+
+## Export/Import mongo database
+
+Note: use the normal terminal on the root level, not the mongodb terminal.
+
+1. Export - to export run the following command in the terminal
+```bash
+mongoexport --db project-one --collection movies --out resultExport.json
+```
+
+2. Import - to import run the following command in the terminal
+```bash
+mongoimport --db project-one --collection movies --file resultExport.json
+```
