@@ -2,6 +2,7 @@ const controllers = require('../controllers');
 const restrictedPages = require('./auth');
 
 module.exports = app => {
+    // here we dont call functions just provide them
     app.get('/', controllers.home.index);
     app.get('/profile/:id', restrictedPages.isAuthed, controllers.home.profileView);
     app.post('/leaveTeam', restrictedPages.isAuthed, controllers.home.leaveTeam);
