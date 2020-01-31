@@ -14,6 +14,7 @@ module.exports = config => {
             throw err;
         }
 
+        // we will use just once seedAdmin function which we created in the model
         User.seedAdminUser()
             .then(() => {
                 console.log('Database ready');                

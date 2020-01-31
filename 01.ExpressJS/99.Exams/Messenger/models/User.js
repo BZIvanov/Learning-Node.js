@@ -22,7 +22,7 @@ userSchema.method({
 });
 
 const User = mongoose.model('User', userSchema);
-
+// Create an admin at initialization here
 User.seedAdminUser = async () => {
     try {
         let users = await User.find();
