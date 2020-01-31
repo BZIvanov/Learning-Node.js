@@ -43,3 +43,14 @@ mongoose.connect('mongodb://localhost:27017/sweets')
   });
 
 // chaining then doesn't work, this is just example
+
+// Below is demo example with greater or less in case we select column with number values
+Cube.find({})
+  .where('difficulty')
+  .gte(5)
+  .lte(10)
+  .then((cubes) => {
+    const filtered = cubes.filter(c => c.name.toLowerCase().includes(name.toLowerCase()));
+
+    res.render('index', { cubes: filtered });
+  })
