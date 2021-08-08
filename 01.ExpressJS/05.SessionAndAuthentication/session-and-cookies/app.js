@@ -9,6 +9,7 @@ const routes = require('./routes');
 const store = new MongoSession({
   uri: process.env.DB_URI,
   collection: 'sessions',
+  expires: 24 * 60 * 60 * 1000, // the session expires after 1 day
 });
 
 const app = express();
@@ -21,7 +22,13 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false, // here we don't want to always create new session even for the same browser/user
     saveUninitialized: false, // here we don't want to save if we didn't modified the session
+    cookie: {
+      path: '/',
+      httpOnly: true, // with httpOnly we can't for example access the cookie by typing document.cookie in the browser console
+      secure: false,
+    },
     store,
+    name: 'myid', // here we replace the default sid so hackers won't easy guess that we use exactly express-session
   })
 );
 
