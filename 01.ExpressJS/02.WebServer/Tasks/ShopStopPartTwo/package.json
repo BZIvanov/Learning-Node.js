@@ -5,16 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "minify-css": "gulp minify-css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "multiparty": "^4.2.2",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-rename": "^2.0.0",
     "nodemon": "^2.0.14"
