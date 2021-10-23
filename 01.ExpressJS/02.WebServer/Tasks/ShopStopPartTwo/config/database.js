@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const dbPath = path.join(__dirname, '/database.json');
+const dbPath = path.join(__dirname, 'database.json');
 
 function getProducts() {
   if (fs.existsSync(dbPath) === false) {
