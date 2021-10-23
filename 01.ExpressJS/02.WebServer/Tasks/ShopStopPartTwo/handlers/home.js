@@ -1,12 +1,11 @@
-const url = require('url');
 const fs = require('fs');
 const path = require('path');
-const qs = require('querystring');
 const database = require('../config/database');
 
 module.exports = (req, res) => {
+  const baseURL = 'http://' + req.headers.host + '/';
   // we will add pathname property to the req object
-  req.pathname = req.pathname || url.parse(req.url).pathname;
+  req.pathname = req.pathname || new URL(req.url, baseURL).pathname;
 
   if (req.pathname === '/' && req.method === 'GET') {
     // normalize method removes dots from the path and double slashes etc.
@@ -28,15 +27,12 @@ module.exports = (req, res) => {
         return;
       }
 
-      // query is property in the object returned from url.parse. And we need to provide query to the querystring module to be parsed. We dont have to provide the whole url, just the query
-      const queryData = qs.parse(url.parse(req.url).query);
+      const queryData = new URL(req.url, baseURL).searchParams.get('query');
 
       let products = database.products.getAll();
-      if (queryData.query) {
+      if (queryData) {
         products = products.filter((product) => {
-          return product.name
-            .toLowerCase()
-            .includes(queryData.query.toLowerCase());
+          return product.name.toLowerCase().includes(queryData.toLowerCase());
         });
       }
 

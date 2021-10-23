@@ -1,16 +1,16 @@
-const url = require('url');
-const database = require('../config/database');
 const fs = require('fs');
 const path = require('path');
 const multiparty = require('multiparty');
 const shortid = require('shortid');
+const database = require('../config/database');
 
 module.exports = (req, res) => {
-  req.pathname = req.pathname || url.parse(req.url).pathname;
+  const baseURL = 'http://' + req.headers.host + '/';
+  req.pathname = req.pathname || new URL(req.url, baseURL).pathname;
 
   if (req.pathname === '/product/add' && req.method === 'GET') {
     const filePath = path.normalize(
-      path.join(__dirname, '../views/products/add.html')
+      path.join(__dirname, '..', 'views', 'products', 'add.html')
     );
 
     fs.readFile(filePath, (err, data) => {
@@ -44,9 +44,9 @@ module.exports = (req, res) => {
         });
 
         part.on('end', () => {
-          let fileName = shortid.generate();
-          let filePath = path.normalize(
-            path.join(__dirname, `../content/images/${fileName}.jpeg`)
+          const fileName = shortid.generate();
+          const filePath = path.normalize(
+            path.join(__dirname, '..', 'content', 'images', `${fileName}.jpeg`)
           );
           product.image = `content/images/${fileName}.jpeg`;
 
