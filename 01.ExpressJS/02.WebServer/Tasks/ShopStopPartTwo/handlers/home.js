@@ -12,7 +12,7 @@ module.exports = (req, res) => {
     // normalize method removes dots from the path and double slashes etc.
     // __dirname is a global variable which is the path to the module. Console.log it anywhere to see example
     const filePath = path.normalize(
-      path.join(__dirname, '../views/home/index.html')
+      path.join(__dirname, '..', 'views', 'home', 'index.html')
     );
 
     fs.readFile(filePath, 'utf8', (err, data) => {
