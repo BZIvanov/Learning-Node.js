@@ -18,7 +18,7 @@ module.exports = (req, res) => {
   req.pathname = req.pathname || new URL(req.url, baseURL).pathname;
 
   if (req.pathname.startsWith('/content/') && req.method === 'GET') {
-    const filePath = path.normalize(path.join(__dirname, `..${req.pathname}`));
+    const filePath = path.normalize(path.join(__dirname, '..', req.pathname));
 
     fs.readFile(filePath, (err, data) => {
       if (err) {

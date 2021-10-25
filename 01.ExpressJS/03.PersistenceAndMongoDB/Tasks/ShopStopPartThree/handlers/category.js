@@ -1,5 +1,4 @@
 const fs = require('fs');
-const qs = require('querystring');
 const Category = require('../models/Category');
 
 /**
@@ -29,15 +28,15 @@ module.exports = (req, res) => {
       res.end();
     });
   } else if (req.pathname === '/category/add' && req.method === 'POST') {
-    let queryData = '';
+    let categoryData = '';
     req.on('data', (data) => {
-      queryData += data;
+      categoryData += data;
     });
 
     req.on('end', () => {
-      const category = qs.parse(queryData);
+      const categoryName = new URLSearchParams(categoryData).get('name');
 
-      Category.create(category)
+      Category.create({ name: categoryName })
         .then(() => {
           res.writeHead(302, {
             Location: '/',

@@ -11,7 +11,7 @@ module.exports = (req, res) => {
 
   if (req.pathname === '/product/add' && req.method === 'GET') {
     const filePath = path.normalize(
-      path.join(__dirname, '../views/products/add.html')
+      path.join(__dirname, '..', 'views', 'products', 'add.html')
     );
 
     fs.readFile(filePath, (err, data) => {
@@ -57,7 +57,7 @@ module.exports = (req, res) => {
         part.on('end', () => {
           const fileName = shortid.generate();
           const filePath = path.normalize(
-            path.join(__dirname, `../content/images/${fileName}.jpeg`)
+            path.join(__dirname, '..', 'content', 'images', `${fileName}.jpeg`)
           );
           product.image = `content/images/${fileName}.jpeg`;
 

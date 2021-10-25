@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const qs = require('querystring');
 const Product = require('../models/Product');
 
 module.exports = (req, res) => {
@@ -9,7 +8,7 @@ module.exports = (req, res) => {
 
   if (req.pathname === '/' && req.method === 'GET') {
     const filePath = path.normalize(
-      path.join(__dirname, '../views/home/index.html')
+      path.join(__dirname, '..', 'views', 'home', 'index.html')
     );
 
     fs.readFile(filePath, (err, data) => {
@@ -22,18 +21,16 @@ module.exports = (req, res) => {
         return;
       }
 
-      const queryData = qs.parse(new URL(req.url, baseURL).search);
+      const searchedString =
+        new URL(req.url, baseURL).searchParams.get('query') || '';
+
       Product.find().then((products) => {
-        if (queryData['?query']) {
-          products = products.filter((product) =>
-            product.name
-              .toLowerCase()
-              .includes(queryData['?query'].toLowerCase())
-          );
-        }
+        const filteredProducts = products.filter((product) =>
+          product.name.toLowerCase().includes(searchedString.toLowerCase())
+        );
 
         let content = '';
-        for (const product of products) {
+        for (const product of filteredProducts) {
           content += `<div class="product-card">
                         <img class="product-img" src="${product.image}">
                         <h2>${product.name}</h2>
