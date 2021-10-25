@@ -7,7 +7,6 @@ const Category = require('../models/Category');
  * @param {HTTP.ClientRequest} req
  * @param {HTTP.ClientResponse} res
  */
-
 module.exports = (req, res) => {
   const baseURL = 'http://' + req.headers.host + '/';
   req.pathname = req.pathname || new URL(req.url, baseURL).pathname;
