@@ -11,9 +11,7 @@ module.exports.index = async (req, res) => {
       );
     }
 
-    const data = {
-      products,
-    };
+    const data = { products };
     if (error) {
       data.error = error;
     } else if (success) {
