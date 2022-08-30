@@ -1,16 +1,3 @@
-# Node JS
-
-Node JS is single threaded.
-
-## Streams
-
-There are 4 type of streams
-
-- Readable
-- Writable
-- Duplex - it is both readable and writeable. Recommended to use _pipe_ in case reading is faster/slower than writing
-- Transform - example is zipping
-
 # Express
 
 ## Installing MongoDB on Windows
