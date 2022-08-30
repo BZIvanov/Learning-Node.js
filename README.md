@@ -1,5 +1,77 @@
 # General info
 
+Node.js developed on Chrome's V8 javascript engine that compiles the javaScript code directly into the native machine code.
+
+Node.js is single threaded.
+
+## Event loop
+
+#### Phases
+
+- timers
+- I/O operations
+- idle
+- poll
+- check
+- close
+
+## API functions
+
+In nodejs there are two types of API functions:
+
+- synchronous, blocking functions
+- asynchronous, non-blocking functions
+
+## I/O
+
+The I/O operations are handled in the second phase of the Event loop, after the Timers which is the first phase.
+
+I/O operations examples:
+
+- reading/ writing files using fs module
+- network operations
+
+## Control flow
+
+The control flow function does the following things:
+
+- control the order of execution
+- collect data
+- limit concurrency
+- calls the next step in the program
+
+## libuv
+
+libuv is a package used for handling asynchronous I/O operations
+
+## spawn() and fork()
+
+- spawn - used to launch new process. Does not create new V8 instance
+
+```bash
+child_process.spawn(command[, args][, options])
+```
+
+- fork - special instance of spawn() that executes a new instance of the V8 engine
+
+```bash
+
+child_process.fork(modulePath[, args][, options])
+```
+
+## Streams
+
+There are 4 type of streams
+
+- Readable - for reading chunks of data from the source
+- Writable - for writing chunks of data to the destination
+- Duplex - it is both readable and writeable. Recommended to use _pipe_ in case reading is faster/slower than writing
+- Transform - modifying data in output stream based on the input stream. Example is zipping
+
+## Buffer
+
+Buffer class is used because pure javascript is not compatible with binary data. Buffer is used for storing raw data as an array of integers.
+
 ## Production and Development dependencies
 
 For our project we usually use many 3rd party packages, but some of them are for production version and some for development.
@@ -13,40 +85,12 @@ npm install nodemon --save-dev
 
 ---
 
-## Nodemon
-
-Nodemon is a utility that will monitor for any changes in your source and automatically restart your server.
-
-Just use _nodemon_ instead of _node_ in your scripts in the package.json file to run your code, and now your process will automatically restart when your code changes. To install from your terminal run:
-
-```javascript
-npm install nodemon --save-dev
-```
-
-## ESLint and Prettier
-
-In order for them to work make sure you have enabled _Format On Save_ option in VS Code. You can find that option _File>Preferences>Settings_.
-
-To see the warnings from ESLint you need to have open VS Code on the root level with the configurations files for prettier and eslint.
-
-## Packages and dependencies
-
-Open terminal in the root folder with package.json file and run one of the following commands.
-
-- **npm list** - will list the tree of the dependencies for our project and also the dependencies of our dependencies. This tree view list might get really large.
-
-- **npm list --depth=1** - this command will also display the tree of dependencies, but only for the first 2 levels (0 and 1). Increasing the number will also increase the depth of the tree we will see.
-
-- **npm view mongoose dependencies** - will display the dependencies for specific package
-
-- **npm view mongoose versions** - will display all the release versions of specific package
-
 ## Additional
 
 Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet with methods usage.
 
 ## Specifics
 
-- If we require one file twice or more, every next time we will be getting the result from the first require usage. This is because node.js is checking if the file was already required and it is caching it after the first time and returning from the cache every next time. You can check this, if you debug and step into the process of requiring and will be able to see the check for already cached required files.
+- If we require one file twice or more, every next time we will be getting the result from the first require usage. This is because node.js is checking if the file was already required and it is caching it after the first time and returning from the cache every next time. You can check this, if you debug and step into the process of requiring and will be able to see the check for already cached required files. This type of implementation is based on the Singleto design pattern.
 
 - exports vs module.exports - they are basically the same, because they point to the same object, but if we assign new value to exports instead of adding new property to the object we will break the reference to the object and exports and module.exports will become different things. So in general it is better to always just use module.exports to avoid any confusion.

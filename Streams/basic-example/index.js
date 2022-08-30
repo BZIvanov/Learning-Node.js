@@ -1,4 +1,4 @@
-// in the text.txt you can find instructions to debug the code to get overview of jow the stream is created
+// in the text.txt you can find instructions to debug the code to get overview of how the stream is created
 const fs = require('fs');
 
 // with highWaterMark we will create smaller chunks, otherwise we would need a lot of text
