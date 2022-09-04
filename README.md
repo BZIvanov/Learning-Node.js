@@ -2,6 +2,8 @@
 
 Node.js developed on Chrome's V8 javascript engine that compiles the javaScript code directly into the native machine code.
 
+Node.js is asynchronous event driven javascript runtime.
+
 Node.js is single threaded.
 
 ## Event loop
@@ -92,6 +94,27 @@ npm install nodemon --save-dev
 ```
 
 -dev in the end will place it in dev dependencies in the package.json file.
+
+## REPL
+
+Repl stands for Read, Eval, Print, Loop. To start the repl in the terminal just type node like below. We can provide unlimited commands and they will be executed.
+
+```bash
+node
+```
+
+## Global Objects
+
+We have some global object which we can use directly, without declaring or importing them.
+
+Some examples are:
+
+- global
+- process - for example process.argv
+- module - for example module.exports
+- console - for example console.log()
+
+You can find some more in the official documentation.
 
 ---
 
