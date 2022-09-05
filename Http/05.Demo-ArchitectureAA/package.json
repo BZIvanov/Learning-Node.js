@@ -1,11 +1,11 @@
 {
-  "name": "demo02",
+  "name": "demo05",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "BI",
+  "license": "MIT"
 }

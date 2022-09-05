@@ -1,15 +1,15 @@
 {
-  "name": "demo-mongodb",
+  "name": "demo-formidable",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "BI",
+  "license": "MIT",
   "dependencies": {
-    "mongoose": "5.8.7"
+    "formidable": "1.2.1",
+    "shortid": "2.2.14"
   }
 }
