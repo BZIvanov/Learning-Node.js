@@ -2,7 +2,7 @@
   "name": "demo01",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "engine": "10.2.1",
   "scripts": {
     "start": "node server.js"
