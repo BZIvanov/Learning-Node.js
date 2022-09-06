@@ -1,30 +1,20 @@
 const fs = require('fs');
-const parse = require('csv-parse');
 const path = require('path');
+const { parse } = require('csv-parse');
 
-const constants = {
-  testData: {
-    csvColumns: ['ruby', 'python', 'vuejs', 'angular', 'react', 'nodejs'],
-  },
-};
-
-const configFileLocation = (name) => {
-  return {
-    filename: path.join(__dirname, `${name}technologies.csv`),
-  };
-};
+const CSV_COLUMNS = ['ruby', 'python', 'vuejs', 'angular', 'react', 'nodejs'];
 
 const getData = (name) =>
   new Promise((resolve, reject) => {
-    const fileLocation = configFileLocation(name).filename;
-
-    const csvParser = parse({
-      delimiter: ',',
-    });
+    const fileLocation = path.join(__dirname, `${name}technologies.csv`);
 
     if (!fs.existsSync(fileLocation)) {
       reject(new Error(`File ${fileLocation} is missing.`));
     }
+
+    const csvParser = parse({
+      delimiter: ',',
+    });
 
     const csvFileStream = fs.createReadStream(fileLocation);
 
@@ -33,39 +23,27 @@ const getData = (name) =>
     });
 
     csvFileStream.on('error', (error) => {
-      reject(
-        new Error({
-          error,
-          message: 'csvParseCards#csvFileStream on error',
-        })
-      );
+      reject(new Error('CSV file stream error', { cause: error }));
     });
 
     csvParser.on('error', (error) => {
-      reject(
-        new Error({
-          error,
-          message: 'csvParseCards#csvParser on error',
-        })
-      );
+      reject(new Error('CSV parser stream error', { cause: error }));
     });
 
     const cards = [];
 
     csvParser.on('readable', () => {
-      let record = '';
+      let record;
 
       while ((record = csvParser.read())) {
         const card = {};
 
-        const columns = constants.testData.csvColumns;
-
-        if (record.length !== columns.length) {
+        if (record.length !== CSV_COLUMNS.length) {
           console.warn('Column mismatch', record);
         }
 
-        record.map((value, index) => {
-          card[columns[index]] = value;
+        record.forEach((value, index) => {
+          card[CSV_COLUMNS[index]] = value;
         });
 
         cards.push(card);
