@@ -1,0 +1,14 @@
+# This file contains employees data,,,,
+#,,,,
+# COLUMN id: Employee ID,,,,
+# COLUMN first_name: Employee first name,,,,
+# COLUMN last_name:  Employee last name,,,,
+# COLUMN available: Is it available for another task,,,,
+# COLUMN city: Working location,,,,
+#,,,,
+id,first_name,last_name,available,city
+123,Iva,Petrova,TRUE,Varna
+124,Ani,Ivanova,TRUE,Plovdiv
+125,Toni,Kolev,FALSE,Sofia
+126,Kiro,Pashov,TRUE,Sofia
+127,Ivan,Petrov,FALSE,Varna
