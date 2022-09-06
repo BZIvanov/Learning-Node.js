@@ -116,6 +116,12 @@ Some examples are:
 
 You can find some more in the official documentation.
 
+## Semver - semantic versioning
+
+Our dependencies have versions, for example 2.3.4. The first number represents the Major version, the second number the Minor version and the third is for the Patch version.
+
+Increase of the major version usually includes breaking changes. Increase of the minor version is usually for new features. Increase of the patch version is for bug fixes.
+
 ---
 
 ## Additional
