@@ -7,7 +7,6 @@ const server = http.createServer(frontController);
 
 function frontController(req, res) {
   // with url module we can parse the url path from the request and get all its elements as an object. In this from the object we will get the property pathname which is the current path from the request and save it in a variable path
-  console.log(url.parse(req.url));
   const path = url.parse(req.url).pathname;
 
   // if the path is / or /index.html then we return our html file otherwise return the error file. Only one backslash means nothing after the port in the url or just the backslash, any other symbol or text will be incorrect path

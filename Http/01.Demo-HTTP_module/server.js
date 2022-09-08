@@ -6,7 +6,7 @@ const http = require('http');
 // http module has createServer method which is a special function which will handle all requests it receives. CreateServer method takes a function as parameter
 const server = http.createServer(frontController);
 
-// the function as parameter from createServer has 2 parameters. The first is request and second is response
+// the function as parameter from createServer has 2 parameters. The first is request and second is response. Both request and response are streams
 function frontController(req, res) {
   // writeHead method from response will send 2 parameters to the browser. The first is which status code and second parameter is object with the details we want to specify for example what kind of data we are sending. Be carefull with the object parameters, in this example we will work with html specified in content type, which means write method below will treat the data as html
   res.writeHead(200, {
