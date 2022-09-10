@@ -1,21 +1,5 @@
-const { validationResult } = require('express-validator/check');
-const Post = require('../models/Post');
 const User = require('../models/User');
-
-function validatePost(req, res) {
-  // errors here are from the middleware validators in routes folder files. The middleware validators with square brackets
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    res.status(422).json({
-      message: 'Validation failed, entered data is incorrect',
-      errors: errors.array(),
-    });
-
-    return false;
-  }
-
-  return true;
-}
+const Post = require('../models/Post');
 
 module.exports = {
   getPosts: (req, res, next) => {
@@ -34,40 +18,36 @@ module.exports = {
       });
   },
   createPost: (req, res, next) => {
-    // Validate post using express-validator
-    // Return 422 with errors array if something went wrong
-    if (validatePost(req, res)) {
-      const { title, content } = req.body;
+    const { title, content } = req.body;
 
-      // Create the post in DB and return 201 status code with a message and the post itself with the creator
-      const post = new Post({ title, content, creator: req.userId });
-      let creator;
+    // Create the post in DB and return 201 status code with a message and the post itself with the creator
+    const post = new Post({ title, content, creator: req.userId });
+    let creator;
 
-      post
-        .save()
-        .then(() => {
-          return User.findById(req.userId);
-        })
-        .then((user) => {
-          user.posts.push(post);
-          creator = user;
-          return user.save();
-        })
-        .then(() => {
-          res.status(201).json({
-            message: 'Post created successfully!',
-            post: post,
-            creator: { userId: req.userId, name: creator.name },
-          });
-        })
-        .catch((error) => {
-          if (!error.statusCode) {
-            error.statusCode = 500;
-          }
-
-          next(error);
+    post
+      .save()
+      .then(() => {
+        return User.findById(req.userId);
+      })
+      .then((user) => {
+        user.posts.push(post);
+        creator = user;
+        return user.save();
+      })
+      .then(() => {
+        res.status(201).json({
+          message: 'Post created successfully!',
+          post: post,
+          creator: { userId: req.userId, name: creator.name },
         });
-    }
+      })
+      .catch((error) => {
+        if (!error.statusCode) {
+          error.statusCode = 500;
+        }
+
+        next(error);
+      });
   },
   deletePost: (req, res, next) => {
     const postId = req.params.postId;
@@ -127,46 +107,42 @@ module.exports = {
       });
   },
   updatePost: (req, res, next) => {
-    // Validate post using express-validator
-    // Return 422 with errors array if something went wrong
-    if (validatePost(req, res)) {
-      const postId = req.params.postId;
-      const post = req.body;
+    const postId = req.params.postId;
+    const post = req.body;
 
-      Post.findById(postId)
-        .then((p) => {
-          if (!p) {
-            const error = new Error('Post not found');
-            error.statusCode = 404;
-            throw error;
-          }
+    Post.findById(postId)
+      .then((p) => {
+        if (!p) {
+          const error = new Error('Post not found');
+          error.statusCode = 404;
+          throw error;
+        }
 
-          if (p.creator.toString() !== req.userId) {
-            const error = new Error('Unauthorized');
-            error.statusCode = 403;
-            throw error;
-          }
+        if (p.creator.toString() !== req.userId) {
+          const error = new Error('Unauthorized');
+          error.statusCode = 403;
+          throw error;
+        }
 
-          p.title = post.title;
-          p.content = post.content;
+        p.title = post.title;
+        p.content = post.content;
 
-          return p.save();
-        })
-        .then((p) => {
-          if (p) {
-            res.status(200).json({
-              message: 'Post updated!',
-              post: p,
-            });
-          }
-        })
-        .catch((error) => {
-          if (!error.statusCode) {
-            error.statusCode = 500;
-          }
+        return p.save();
+      })
+      .then((p) => {
+        if (p) {
+          res.status(200).json({
+            message: 'Post updated!',
+            post: p,
+          });
+        }
+      })
+      .catch((error) => {
+        if (!error.statusCode) {
+          error.statusCode = 500;
+        }
 
-          next(error);
-        });
-    }
+        next(error);
+      });
   },
 };
