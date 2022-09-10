@@ -5,6 +5,7 @@ const app = require('express')();
 const filePath = join(require.main.path, 'views', 'index.html');
 
 app.get('/', (req, res) => {
+  // express will automatically set the Content-Type header based on the file extension
   res.sendFile(filePath);
 });
 
