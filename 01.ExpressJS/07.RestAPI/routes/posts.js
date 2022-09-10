@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { body } = require('express-validator/check');
+const { validate } = require('express-validation');
 const {
   getPosts,
   createPost,
@@ -7,20 +7,18 @@ const {
   deletePost,
   getPostById,
 } = require('../controllers/posts');
-const isAuth = require('../middleware/is-auth');
+const isAuthenticated = require('../middleware/is-authenticated');
+const { postValidation } = require('../validations/post');
 
-router.get('/', isAuth, getPosts);
-router.get('/:postId', isAuth, getPostById);
-router.post(
-  '/',
-  isAuth,
-  [
-    body('title').trim().isLength({ min: 5 }),
-    body('content').trim().isLength({ min: 5 }),
-  ],
-  createPost
+router.get('/', isAuthenticated, getPosts);
+router.get('/:postId', isAuthenticated, getPostById);
+router.post('/', isAuthenticated, validate(postValidation, {}, {}), createPost);
+router.put(
+  '/:postId',
+  isAuthenticated,
+  validate(postValidation, {}, {}),
+  updatePost
 );
-router.put('/:postId', isAuth, updatePost);
-router.delete('/:postId', isAuth, deletePost);
+router.delete('/:postId', isAuthenticated, deletePost);
 
 module.exports = router;

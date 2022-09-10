@@ -1,9 +1,17 @@
-const bodyParser = require('body-parser');
+const express = require('express');
 const cors = require('../middleware/cors');
-const globalError = require('../middleware/error');
+const authRoutes = require('../routes/auth');
+const postsRoutes = require('../routes/posts');
+const globalError = require('../middleware/global-error');
 
-module.exports = (app) => {
-  app.use(bodyParser.json());
-  app.use(cors);
-  app.use(globalError);
-};
+const app = express();
+
+app.use(express.json());
+app.use(cors);
+
+app.use('/auth', authRoutes);
+app.use('/posts', postsRoutes);
+// global error must be after the other routes
+app.use(globalError);
+
+module.exports = app;

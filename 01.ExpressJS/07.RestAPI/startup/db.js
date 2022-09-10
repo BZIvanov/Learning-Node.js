@@ -5,16 +5,18 @@ module.exports = () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
+
   const db = mongoose.connection;
-  db.once('open', (err) => {
-    if (err) {
-      console.log(err);
+
+  db.once('open', (error) => {
+    if (error) {
+      console.log(error);
     }
 
     console.log('Database ready');
   });
 
-  db.on('error', (err) => {
-    console.log(err);
+  db.on('error', (error) => {
+    console.log(error);
   });
 };
