@@ -1,37 +1,44 @@
+const status = require('http-status');
 const { Movie, validateMovie } = require('../models/movie');
-const asyncMiddleware = require('../middlewares/async');
+const catchAsync = require('../middlewares/catch-async');
 
-module.exports.getMovies = asyncMiddleware(async (req, res) => {
+module.exports.getMovies = catchAsync(async (req, res) => {
   const movies = await Movie.find().sort('name').select('-__v');
-  res.send(movies);
+  res.status(status.OK).json({ success: true, data: movies });
 });
 
-module.exports.getMovie = asyncMiddleware(async (req, res) => {
+module.exports.getMovie = catchAsync(async (req, res) => {
   const movie = await Movie.findById(req.params.id).select('-__v');
   if (!movie) {
-    return res.status(404).send('Movie not found!');
+    return res
+      .status(status.NOT_FOUND)
+      .json({ success: false, message: 'Movie not found!' });
   }
 
-  res.send(movie);
+  res.status(status.OK).json({ success: true, data: movie });
 });
 
-module.exports.createMovie = asyncMiddleware(async (req, res) => {
+module.exports.createMovie = catchAsync(async (req, res) => {
   const error = validateMovie(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res
+      .status(status.BAD_REQUEST)
+      .json({ success: false, message: error.details[0].message });
   }
 
   const { name } = req.body;
   let movie = new Movie({ name });
   movie = await movie.save();
 
-  res.status(201).send(movie);
+  res.status(status.CREATED).json({ success: true, data: movie });
 });
 
-module.exports.updateMovie = asyncMiddleware(async (req, res) => {
+module.exports.updateMovie = catchAsync(async (req, res) => {
   const error = validateMovie(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res
+      .status(status.BAD_REQUEST)
+      .json({ success: false, message: error.details[0].message });
   }
 
   const { name } = req.body;
@@ -41,17 +48,21 @@ module.exports.updateMovie = asyncMiddleware(async (req, res) => {
     { new: true }
   ).select('-__v');
   if (!movie) {
-    return res.status(404).send('Movie not found!');
+    return res
+      .status(status.NOT_FOUND)
+      .json({ success: false, message: 'Movie not found!' });
   }
 
-  res.send(movie);
+  res.status(status.OK).json({ success: false, data: movie });
 });
 
-module.exports.deleteMovie = asyncMiddleware(async (req, res) => {
+module.exports.deleteMovie = catchAsync(async (req, res) => {
   const movie = await Movie.findByIdAndRemove(req.params.id).select('-__v');
   if (!movie) {
-    return res.status(404).send('Movie not found!');
+    return res
+      .status(status.NOT_FOUND)
+      .json({ success: false, message: 'Movie not found!' });
   }
 
-  res.send(movie);
+  res.status(status.NO_CONTENT).json({ success: true });
 });

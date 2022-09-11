@@ -2,14 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const usersRoutes = require('../routes/users');
 const moviesRoutes = require('../routes/movies');
-const globalError = require('../middlewares/error');
+const globalError = require('../middlewares/global-error');
 
-module.exports = function (app) {
-  app.use(cors());
-  app.use(express.json());
+const app = express();
 
-  app.use('/api/users', usersRoutes);
-  app.use('/api/movies', moviesRoutes);
+app.use(cors());
+app.use(express.json());
 
-  app.use(globalError);
-};
+app.use('/api/users', usersRoutes);
+app.use('/api/movies', moviesRoutes);
+
+app.use(globalError);
+
+module.exports = app;
