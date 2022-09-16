@@ -23,10 +23,13 @@ module.exports.register = catchAsync(async (req, res) => {
 
   const token = newUser.generateAuthToken();
 
-  res.header('Authorization', `Bearer ${token}`).status(status.CREATED).json({
-    success: true,
-    message: 'User created.',
-  });
+  return res
+    .header('Authorization', `Bearer ${token}`)
+    .status(status.CREATED)
+    .json({
+      success: true,
+      message: 'User created.',
+    });
 });
 
 module.exports.login = catchAsync(async (req, res) => {
@@ -54,7 +57,7 @@ module.exports.login = catchAsync(async (req, res) => {
 
   const token = user.generateAuthToken();
 
-  res.header('Authorization', `Bearer ${token}`).status(status.OK).json({
+  return res.header('Authorization', `Bearer ${token}`).status(status.OK).json({
     success: true,
     message: 'User login success',
   });
@@ -66,5 +69,5 @@ module.exports.me = catchAsync(async (req, res) => {
     return res.status(status.NOT_FOUND).json({ message: 'User not found!' });
   }
 
-  res.status(status.OK).json({ success: true, data: user });
+  return res.status(status.OK).json({ success: true, data: user });
 });
