@@ -4,7 +4,7 @@ const catchAsync = require('../middlewares/catch-async');
 
 module.exports.getMovies = catchAsync(async (req, res) => {
   const movies = await Movie.find().sort('name').select('-__v');
-  res.status(status.OK).json({ success: true, data: movies });
+  return res.status(status.OK).json({ success: true, data: movies });
 });
 
 module.exports.getMovie = catchAsync(async (req, res) => {
@@ -15,7 +15,7 @@ module.exports.getMovie = catchAsync(async (req, res) => {
       .json({ success: false, message: 'Movie not found!' });
   }
 
-  res.status(status.OK).json({ success: true, data: movie });
+  return res.status(status.OK).json({ success: true, data: movie });
 });
 
 module.exports.createMovie = catchAsync(async (req, res) => {
@@ -30,7 +30,7 @@ module.exports.createMovie = catchAsync(async (req, res) => {
   let movie = new Movie({ name });
   movie = await movie.save();
 
-  res.status(status.CREATED).json({ success: true, data: movie });
+  return res.status(status.CREATED).json({ success: true, data: movie });
 });
 
 module.exports.updateMovie = catchAsync(async (req, res) => {
@@ -53,7 +53,7 @@ module.exports.updateMovie = catchAsync(async (req, res) => {
       .json({ success: false, message: 'Movie not found!' });
   }
 
-  res.status(status.OK).json({ success: false, data: movie });
+  return res.status(status.OK).json({ success: false, data: movie });
 });
 
 module.exports.deleteMovie = catchAsync(async (req, res) => {
@@ -64,5 +64,5 @@ module.exports.deleteMovie = catchAsync(async (req, res) => {
       .json({ success: false, message: 'Movie not found!' });
   }
 
-  res.status(status.NO_CONTENT).json({ success: true });
+  return res.status(status.NO_CONTENT).json({ success: true });
 });
