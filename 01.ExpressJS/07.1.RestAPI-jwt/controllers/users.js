@@ -1,15 +1,8 @@
 const status = require('http-status');
-const { User, validateRegister, validateLogin } = require('../models/user');
+const { User } = require('../models/user');
 const catchAsync = require('../middlewares/catch-async');
 
 module.exports.register = catchAsync(async (req, res) => {
-  const error = validateRegister(req.body);
-  if (error) {
-    return res
-      .status(status.BAD_REQUEST)
-      .json({ success: false, message: error.details[0].message });
-  }
-
   const { name, email, password } = req.body;
   const isExistingUser = await User.findOne({ email });
   if (isExistingUser) {
@@ -33,13 +26,6 @@ module.exports.register = catchAsync(async (req, res) => {
 });
 
 module.exports.login = catchAsync(async (req, res) => {
-  const error = validateLogin(req.body);
-  if (error) {
-    return res
-      .status(status.BAD_REQUEST)
-      .json({ success: false, message: error.details[0].message });
-  }
-
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
@@ -66,7 +52,9 @@ module.exports.login = catchAsync(async (req, res) => {
 module.exports.me = catchAsync(async (req, res) => {
   const user = await User.findById(req.user.id).select('-password -role -__v');
   if (!user) {
-    return res.status(status.NOT_FOUND).json({ message: 'User not found!' });
+    return res
+      .status(status.NOT_FOUND)
+      .json({ success: false, message: 'User not found!' });
   }
 
   return res.status(status.OK).json({ success: true, data: user });
