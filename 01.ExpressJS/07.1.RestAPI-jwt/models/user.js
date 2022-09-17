@@ -52,25 +52,19 @@ userSchema.methods.isPasswordCorrect = async function (incomingPassword) {
 
 const User = model('User', userSchema);
 
-function validateRegister(user) {
-  const schema = Joi.object({
-    name: Joi.string().min(3).max(20).required(),
-    email: Joi.string().min(5).max(50).required().email(),
-    password: Joi.string().min(5).max(50).required(),
-  });
-  const { error } = schema.validate(user);
-  return error;
-}
+const registerValidationSchema = Joi.object({
+  name: Joi.string().min(3).max(20).required(),
+  email: Joi.string().min(5).max(50).required().email(),
+  password: Joi.string().min(5).max(50).required(),
+});
 
-function validateLogin(user) {
-  const schema = Joi.object({
-    email: Joi.string().min(5).max(50).required().email(),
-    password: Joi.string().min(5).max(50).required(),
-  });
-  const { error } = schema.validate(user);
-  return error;
-}
+const loginValidationSchema = Joi.object({
+  email: Joi.string().min(5).max(50).required().email(),
+  password: Joi.string().min(5).max(50).required(),
+});
 
-exports.User = User;
-exports.validateRegister = validateRegister;
-exports.validateLogin = validateLogin;
+module.exports = {
+  User,
+  registerValidationSchema,
+  loginValidationSchema,
+};

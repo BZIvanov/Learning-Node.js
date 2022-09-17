@@ -1,5 +1,5 @@
 const status = require('http-status');
-const { Movie, validateMovie } = require('../models/movie');
+const { Movie } = require('../models/movie');
 const catchAsync = require('../middlewares/catch-async');
 
 module.exports.getMovies = catchAsync(async (req, res) => {
@@ -19,13 +19,6 @@ module.exports.getMovie = catchAsync(async (req, res) => {
 });
 
 module.exports.createMovie = catchAsync(async (req, res) => {
-  const error = validateMovie(req.body);
-  if (error) {
-    return res
-      .status(status.BAD_REQUEST)
-      .json({ success: false, message: error.details[0].message });
-  }
-
   const { name } = req.body;
   let movie = new Movie({ name });
   movie = await movie.save();
@@ -34,13 +27,6 @@ module.exports.createMovie = catchAsync(async (req, res) => {
 });
 
 module.exports.updateMovie = catchAsync(async (req, res) => {
-  const error = validateMovie(req.body);
-  if (error) {
-    return res
-      .status(status.BAD_REQUEST)
-      .json({ success: false, message: error.details[0].message });
-  }
-
   const { name } = req.body;
   const movie = await Movie.findByIdAndUpdate(
     req.params.id,
