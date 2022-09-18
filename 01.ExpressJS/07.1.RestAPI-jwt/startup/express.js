@@ -3,8 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const usersRoutes = require('../routes/users');
-const moviesRoutes = require('../routes/movies');
+const routesV1 = require('../routes/v1');
 const notFoundRoutes = require('../routes/not-found');
 const globalError = require('../middlewares/global-error');
 
@@ -14,8 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('combined'));
 
-app.use('/api/users', usersRoutes);
-app.use('/api/movies', moviesRoutes);
+app.use('/v1', routesV1);
 app.use('*', notFoundRoutes);
 
 app.use(globalError);
