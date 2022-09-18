@@ -1,5 +1,7 @@
+const getHome = (req, res) => {
+  res.render('home/index');
+};
+
 module.exports = {
-  index: (req, res) => {
-    res.render('home/index');
-  },
+  getHome,
 };

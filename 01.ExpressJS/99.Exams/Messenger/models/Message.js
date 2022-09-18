@@ -3,16 +3,16 @@ const { Schema, model } = require('mongoose');
 const messageSchema = new Schema({
   content: {
     type: String,
-    required: [true, 'Message require some content please :('],
+    required: [true, 'Message content is required.'],
   },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, 'A message needs User(receiver)'],
+    required: [true, 'Message needs User(receiver)'],
   },
   thread: {
     type: Schema.Types.ObjectId,
-    required: [true, 'A meesage needs the thread it belongs to'],
+    required: [true, 'Message needs the thread it belongs to.'],
   },
 });
 

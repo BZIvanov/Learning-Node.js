@@ -74,77 +74,6 @@ Feedback message.
   font-size: 20px;
 }
 
-.error {
-  width: 30%;
-  margin: 0 auto;
-  margin-top: 10px;
-  height: 30px;
-  border-radius: 20px;
-  text-align: center;
-  color: white;
-  padding: 5px;
-  background: rgb(194, 53, 53);
-}
-
-footer {
-  text-align: center;
-  position: relative;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.head-title {
-  margin-top: 0;
-  text-align: center;
-}
-
-/**
-Default wrapper
- */
-.container {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-}
-
-.wrapper {
-  position: relative;
-  border: 1px solid black;
-  box-sizing: border-box;
-  padding: 10px;
-  margin: 10px;
-}
-
-/**
-Layout
- */
-.inline {
-  display: inline-block;
-}
-
-.row {
-  display: block;
-}
-
-.small {
-  width: 20%;
-}
-
-.medium {
-  width: 33%;
-}
-
-.large {
-  width: 100%;
-}
-
-.cards {
-  display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
-}
-
 .form {
   display: flex;
   height: 40px;
@@ -218,21 +147,6 @@ Layout
   margin-top: 0 !important;
 }
 
-.btn-success {
-  color: #ffffff;
-  background-color: #73a839;
-  border-color: #73a839;
-  width: 35% !important;
-  border-radius: 20px;
-  height: 45px;
-}
-
-.btn-warning {
-  color: #ffffff;
-  background-color: #dd5600;
-  border-color: #dd5600;
-}
-
 .btn-danger {
   color: #ffffff;
   background-color: #c71c22;
@@ -240,10 +154,6 @@ Layout
   width: 35% !important;
   border-radius: 20px;
   height: 45px;
-}
-
-#likes {
-  color: darkgreen;
 }
 
 .wrapper::after {
@@ -292,14 +202,6 @@ Layout
   height: 50px;
   margin: 0 auto;
   width: 49%;
-}
-
-.message-img {
-  width: 100%;
-}
-
-.liked {
-  color: gold;
 }
 
 textarea {
