@@ -14,7 +14,7 @@ describe('Users routes', () => {
   describe('Register user controller', () => {
     test('it should register an user successfully', async () => {
       const response = await request(app)
-        .post('/api/users/register')
+        .post('/v1/users/register')
         .send({ name: 'Ico', email: 'ico@mail.com', password: '12345678' })
         .expect('Content-Type', /application\/json/)
         .expect('Authorization', /Bearer [A-Za-z0-9\.-]+/)
@@ -28,14 +28,14 @@ describe('Users routes', () => {
 
     test('it should return error for already registered user', async () => {
       await request(app)
-        .post('/api/users/register')
+        .post('/v1/users/register')
         .send({ name: 'Emo', email: 'emo@mail.com', password: '12345678' })
         .expect('Content-Type', /application\/json/)
         .expect('Authorization', /Bearer [A-Za-z0-9\.-]+/)
         .expect(201);
 
       const secondUser = await request(app)
-        .post('/api/users/register')
+        .post('/v1/users/register')
         .send({ name: 'Emo', email: 'emo@mail.com', password: '12345678' })
         .expect('Content-Type', /application\/json/)
         .expect(400);
@@ -48,7 +48,7 @@ describe('Users routes', () => {
 
     test('it should return an error for missing email', async () => {
       const response = await request(app)
-        .post('/api/users/register')
+        .post('/v1/users/register')
         .send({ name: 'Eva', password: '12345678' })
         .expect('Content-Type', /application\/json/)
         .expect(400);
@@ -61,7 +61,7 @@ describe('Users routes', () => {
 
     test('it should return an error for too short password', async () => {
       const response = await request(app)
-        .post('/api/users/register')
+        .post('/v1/users/register')
         .send({ name: 'Eva', email: 'eva@mail.com', password: '123' })
         .expect('Content-Type', /application\/json/)
         .expect(400);
@@ -76,13 +76,13 @@ describe('Users routes', () => {
   describe('Register user controller', () => {
     beforeAll(async () => {
       await request(app)
-        .post('/api/users/register')
+        .post('/v1/users/register')
         .send({ name: 'Eli', email: 'eli@mail.com', password: '12345678' });
     });
 
     test('it should login an user successfully', async () => {
       const response = await request(app)
-        .post('/api/users/login')
+        .post('/v1/users/login')
         .send({ email: 'eli@mail.com', password: '12345678' })
         .expect('Content-Type', /application\/json/)
         .expect('Authorization', /Bearer [A-Za-z0-9\.-]+/)
@@ -96,7 +96,7 @@ describe('Users routes', () => {
 
     test('it should return error for incorrect email', async () => {
       const response = await request(app)
-        .post('/api/users/login')
+        .post('/v1/users/login')
         .send({ email: 'eli2@mail.com', password: '12345678' })
         .expect('Content-Type', /application\/json/)
         .expect(400);
@@ -109,7 +109,7 @@ describe('Users routes', () => {
 
     test('it should return error for incorrect password', async () => {
       const response = await request(app)
-        .post('/api/users/login')
+        .post('/v1/users/login')
         .send({ email: 'eli@mail.com', password: '12345' })
         .expect('Content-Type', /application\/json/)
         .expect(400);
@@ -122,7 +122,7 @@ describe('Users routes', () => {
 
     test('it should return error if email is not provided', async () => {
       const response = await request(app)
-        .post('/api/users/login')
+        .post('/v1/users/login')
         .send({ password: '12345678' })
         .expect('Content-Type', /application\/json/)
         .expect(400);
@@ -138,13 +138,13 @@ describe('Users routes', () => {
     let registerUserResponse;
     beforeAll(async () => {
       registerUserResponse = await request(app)
-        .post('/api/users/register')
+        .post('/v1/users/register')
         .send({ name: 'Ivan', email: 'ivan@mail.com', password: '12345678' });
     });
 
     test('it should get user data successfully without returning the password', async () => {
       const response = await request(app)
-        .get('/api/users/me')
+        .get('/v1/users/me')
         .set('Authorization', registerUserResponse.headers.authorization)
         .expect('Content-Type', /application\/json/)
         .expect(200);
@@ -158,7 +158,7 @@ describe('Users routes', () => {
 
     test('it should return not found error for incorrect authorization header', async () => {
       const response = await request(app)
-        .get('/api/users/me')
+        .get('/v1/users/me')
         .set(
           'Authorization',
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMjVkMjczZWY2M2FjMjQwMzkzOTkyMSIsIm5hbWUiOiJJdmEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjYzNDIzMDkxfQ.LE9leGallYdWGvApMjdgKIWasJ_giiYZbpZDFOMgAVA'

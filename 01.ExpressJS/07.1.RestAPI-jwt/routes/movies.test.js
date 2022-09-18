@@ -8,7 +8,7 @@ describe('Movies routes', () => {
   beforeAll(async () => {
     await mongoDbConnect();
 
-    registerUserResponse = await request(app).post('/api/users/register').send({
+    registerUserResponse = await request(app).post('/v1/users/register').send({
       name: 'Iva',
       email: 'iva@mail.com',
       password: '12345',
@@ -22,7 +22,7 @@ describe('Movies routes', () => {
   describe('Get movies controller', () => {
     test('it should get movies successfully', async () => {
       const response = await request(app)
-        .get('/api/movies')
+        .get('/v1/movies')
         .expect('Content-Type', /application\/json/)
         .expect(200);
 
@@ -34,14 +34,14 @@ describe('Movies routes', () => {
     let createMovieResponse;
     beforeAll(async () => {
       createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .set('Authorization', registerUserResponse.headers.authorization)
         .send({ name: 'My cool movie' });
     });
 
     test('it should get a movie successfully', async () => {
       const response = await request(app)
-        .get(`/api/movies/${createMovieResponse.body.data._id}`)
+        .get(`/v1/movies/${createMovieResponse.body.data._id}`)
         .expect('Content-Type', /application\/json/)
         .expect(200);
 
@@ -53,7 +53,7 @@ describe('Movies routes', () => {
 
     test('it should return not found error for incorrect movie id', async () => {
       const response = await request(app)
-        .get(`/api/movies/6314b761effb4f7520c5045c`)
+        .get(`/v1/movies/6314b761effb4f7520c5045c`)
         .expect('Content-Type', /application\/json/)
         .expect(404);
 
@@ -67,7 +67,7 @@ describe('Movies routes', () => {
   describe('Create movies controller', () => {
     test('it should create movie successfully', async () => {
       const createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .set('Authorization', registerUserResponse.headers.authorization)
         .send({ name: 'Superhero' })
         .expect('Content-Type', /application\/json/)
@@ -81,7 +81,7 @@ describe('Movies routes', () => {
 
     test('it should return bad request for incorrect key name', async () => {
       const createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .set('Authorization', registerUserResponse.headers.authorization)
         .send({ incorrectKey: 'Superhero' })
         .expect('Content-Type', /application\/json/)
@@ -95,7 +95,7 @@ describe('Movies routes', () => {
 
     test('it should return bad request for too short movie name', async () => {
       const createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .set('Authorization', registerUserResponse.headers.authorization)
         .send({ name: 'XS' })
         .expect('Content-Type', /application\/json/)
@@ -109,7 +109,7 @@ describe('Movies routes', () => {
 
     test('it should return bad request for too long movie name', async () => {
       const createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .set('Authorization', registerUserResponse.headers.authorization)
         .send({
           name: 'Very long test string for movie name. Very long test string for movie name.',
@@ -126,7 +126,7 @@ describe('Movies routes', () => {
 
     test('it should return unauthorized if authorization header is not provided', async () => {
       const createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .send({ name: 'Supermovie' })
         .expect('Content-Type', /application\/json/)
         .expect(401);
@@ -139,7 +139,7 @@ describe('Movies routes', () => {
 
     test('it should return unauthorized if authorization header is incorrect', async () => {
       const createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .set('Authorization', 'Bearer invalidtoken')
         .send({ name: 'Supermovie' })
         .expect('Content-Type', /application\/json/)
@@ -156,14 +156,14 @@ describe('Movies routes', () => {
     let createMovieResponse;
     beforeAll(async () => {
       createMovieResponse = await request(app)
-        .post('/api/movies')
+        .post('/v1/movies')
         .set('Authorization', registerUserResponse.headers.authorization)
         .send({ name: 'My cool movie' });
     });
 
     test('it should return forbidden error if the user is not admin', async () => {
       const response = await request(app)
-        .delete(`/api/movies/${createMovieResponse.body.data._id}`)
+        .delete(`/v1/movies/${createMovieResponse.body.data._id}`)
         .set('Authorization', registerUserResponse.headers.authorization)
         .expect('Content-Type', /application\/json/)
         .expect(403);
