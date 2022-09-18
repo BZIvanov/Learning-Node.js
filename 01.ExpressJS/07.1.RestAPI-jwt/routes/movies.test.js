@@ -24,8 +24,10 @@ describe('Movies routes', () => {
       const response = await request(app)
         .get('/v1/movies')
         .expect('Content-Type', /application\/json/)
+        .expect('x-xss-protection', '0') // make sure this header was set by helmet package
         .expect(200);
 
+      expect(response.headers['X-Powered-By'.toLowerCase()]).toBeUndefined(); // make sure helmet package removed this header
       expect(response.body).toMatchObject({ success: true, data: [] });
     });
   });
