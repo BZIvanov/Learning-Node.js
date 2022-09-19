@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>My cool blog</title>
+  </head>
+
+  <body>
+    <header>
+      <ul>
+        <li><a href='/'>My Cool Blog</a></li>
+        {{#if isAuth}}
+          <li><a href='/user/details'>Welcome({{userEmail}})</a></li>
+          <li><a href='/article/create'>New Article</a></li>
+          <li><a href='/user/logout'>Logout</a></li>
+        {{else}}
+          <li><a href='/user/register'>Register</a></li>
+          <li><a href='/user/login'>Login</a></li>
+        {{/if}}
+      </ul>
+    </header>
+
+    {{#if message}}
+      <div>{{message}}</div>
+    {{/if}}
+
+    {{#if error}}
+      <h2>{{error}}</h2>
+    {{/if}}
+    {{{body}}}
+
+    <footer>
+      <div>
+        <p>&copy; 2022 - Articles Blog</p>
+      </div>
+    </footer>
+  </body>
+</html>

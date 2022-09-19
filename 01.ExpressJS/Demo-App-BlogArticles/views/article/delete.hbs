@@ -1,0 +1,37 @@
+<div>
+  <form method='POST' action='/article/delete/{{_id}}'>
+    <fieldset>
+      <legend>Delete Article</legend>
+
+      <div>
+        <label for='articleTitle'>Article Title</label>
+        <div>
+          <input
+            type='text'
+            id='articleTitle'
+            placeholder='Article Title'
+            value='{{title}}'
+            name='title'
+            disabled='true'
+          />
+        </div>
+      </div>
+      <div>
+        <label for='articleContent'>Content</label>
+        <div class='col-sm-6'>
+          <textarea
+            id='articleContent'
+            rows='5'
+            name='content'
+            disabled='true'
+          >{{content}}</textarea>
+        </div>
+      </div>
+
+      <div>
+        <a href='/'>Cancel</a>
+        <button type='submit'>Delete</button>
+      </div>
+    </fieldset>
+  </form>
+</div>

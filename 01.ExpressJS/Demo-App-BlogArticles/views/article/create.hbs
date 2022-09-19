@@ -1,0 +1,38 @@
+<div>
+  <!-- when no action is specified, the action is the same as the url -->
+  <form method='POST'>
+    <fieldset>
+      <legend>New Article</legend>
+
+      <div>
+        <label for='articleTitle'>Article Title</label>
+        <div>
+          <input
+            type='text'
+            id='articleTitle'
+            placeholder='Article Title'
+            name='title'
+            required='true'
+          />
+        </div>
+      </div>
+      <div>
+        <label for='articleContent'>Content</label>
+        <div class='col-sm-6'>
+          <textarea
+            class='form-control'
+            id='articleContent'
+            rows='5'
+            name='content'
+            required='true'
+          ></textarea>
+        </div>
+      </div>
+
+      <div>
+        <button type='reset'>Cancel</button>
+        <button type='submit'>Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
