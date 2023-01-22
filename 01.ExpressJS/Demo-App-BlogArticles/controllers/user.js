@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const User = require('../models/User');
 const encryption = require('./../utilities/encryption');
 
@@ -29,7 +30,7 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const salt = encryption.generateSalt();
+    const salt = crypto.randomBytes(128).toString('base64');
     const passwordHash = encryption.hashPassword(password, salt);
 
     const newUser = await User.create({

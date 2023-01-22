@@ -16,12 +16,21 @@ const userSchema = Schema(
       type: String,
       required: true,
     },
-    roles: [{ type: String }],
+    roles: [
+      {
+        type: String,
+      },
+    ],
     salt: {
       type: String,
       required: true,
     },
-    articles: [{ type: Schema.Types.ObjectId, ref: 'Article' }],
+    articles: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Article',
+      },
+    ],
   },
   {
     usePushEach: true,
