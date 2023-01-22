@@ -1,7 +1,5 @@
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const LocalPassport = require('passport-local');
@@ -32,15 +30,12 @@ app.set('view engine', '.hbs');
 app.set('views', path.normalize(path.join(__dirname, '..', 'views')));
 
 // This set up which is the parser for the request's data.
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: true,
   })
 );
-
-// We will use cookies.
-app.use(cookieParser());
 
 // Session is storage for cookies, which will be de/encrypted with that 'secret' key.
 app.use(
@@ -61,17 +56,21 @@ passport.use(
       passwordField: 'password',
     },
     (username, password, done) => {
-      User.findOne({ email: username }).then((user) => {
-        if (!user) {
-          return done(null, false);
-        }
+      User.findOne({ email: username })
+        .then((user) => {
+          if (!user) {
+            return done(null, false);
+          }
 
-        if (!user.authenticate(password)) {
-          return done(null, false);
-        }
+          if (!user.authenticate(password)) {
+            return done(null, false);
+          }
 
-        return done(null, user);
-      });
+          return done(null, user);
+        })
+        .catch((err) => {
+          return done(err);
+        });
     }
   )
 );
