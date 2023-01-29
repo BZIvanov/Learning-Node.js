@@ -9,6 +9,7 @@ if (isMainThread) {
   console.log(`Main thread, Process id: ${process.pid}`);
 
   // workerData is how we can provide custom data for the worker
+  // for the first parameter which require a file, we will provide this file
   new Worker(__filename, { workerData: [5, 2, 9, 1] });
   new Worker(__filename, { workerData: [2, 0, 8, 3] });
 } else {
