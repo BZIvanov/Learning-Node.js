@@ -1,6 +1,8 @@
-const EventEmmitter = require('events');
+const EventEmitter = require('node:events');
 
-const myEmitter = new EventEmmitter();
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter();
 
 myEmitter.on('walk', (arg) => {
   if (arg) {

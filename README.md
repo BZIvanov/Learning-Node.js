@@ -1,31 +1,22 @@
-# General info
+# Node.js
 
-Node.js developed on Chrome's V8 javascript engine that compiles the javaScript code directly into the native machine code.
+## General info
 
 Node.js is asynchronous event driven javascript runtime.
 
 Node.js is single threaded.
 
-## Event loop
+## Dependencies
 
-#### Phases
+Some of the Node.js dependencies are listed below with short explanation.
 
-Every iteration of the event loop is also called **tick**.
+#### V8
 
-Each phase has a callback queue with callbacks to be executed.
+Node.js developed on Chrome's V8 javascript engine that compiles the javaScript code directly into the native machine code. V8 takes your JavaScript code and converts it into instructions your computer can understand directly, making Node.js applications run efficiently. This is similar to how Chrome uses V8 to execute JavaScript on web pages.
 
-- timers - _setTimeout_ and _setInterval_ run in this phase
-- I/O operations - used for fs operations, networking etc...
-- idle - this is internal work phase for node.js so we don't really deal with it
-- poll - calculates the blocking time in every iteration to handle I/O callbacks. Newly incoming requests are hanled here (for example express API requests).
-- check - _setImmediate_ runs in this phase. Handles the callbacks scheduled by setImmediate
-- close - close events callbacks are hanled during this phase
+#### libuv
 
-#### Microtask queue
-
-Promises and _nextTick_ are considered microtasks and they run during each phase of the event loop.
-
-Microtasks are executed after the main thread and each phase of the event loop. Microtasks created by process.nextTick are executed before those created by promises.
+libuv is a package used for handling asynchronous I/O operations. It is written in C programming language.
 
 ## API functions
 
@@ -52,10 +43,6 @@ The control flow function does the following things:
 - limit concurrency
 - calls the next step in the program
 
-## libuv
-
-libuv is a package used for handling asynchronous I/O operations
-
 ## spawn() and fork()
 
 - spawn - used to launch new process. Does not create new V8 instance
@@ -79,10 +66,6 @@ There are 4 type of streams
 - Writable - for writing chunks of data to the destination
 - Duplex - it is both readable and writeable. Recommended to use _pipe_ in case reading is faster/slower than writing
 - Transform - modifying data in output stream based on the input stream. Example is zipping
-
-## Buffer
-
-Buffer class is used because pure javascript is not compatible with binary data. Buffer is used for storing raw data as an array of integers.
 
 ## Production and Development dependencies
 
@@ -133,3 +116,15 @@ Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet wit
 - If we require one file twice or more, every next time we will be getting the result from the first require usage. This is because node.js is checking if the file was already required and it is caching it after the first time and returning from the cache every next time. You can check this, if you debug and step into the process of requiring and will be able to see the check for already cached required files. This type of implementation is based on the Singleto design pattern.
 
 - exports vs module.exports - they are basically the same, because they point to the same object, but if we assign new value to exports instead of adding new property to the object we will break the reference to the object and exports and module.exports will become different things. So in general it is better to always just use module.exports to avoid any confusion.
+
+## Terminology
+
+- **idempotent operation** - when a request can be retransmitted or retried with no additional side effects. For example if we make a payment and for some reason we don't get response, but the payment still happened
+
+## Content
+
+Below is the recommended learning order to get familiar with the different parts of Node.js
+
+1. Event Loop - get some understanding of how the event loop is working
+2. Events - contains info about the EventEmmiter and the events package
+3. Buffers
