@@ -58,15 +58,6 @@ child_process.spawn(command[, args][, options])
 child_process.fork(modulePath[, args][, options])
 ```
 
-## Streams
-
-There are 4 type of streams
-
-- Readable - for reading chunks of data from the source
-- Writable - for writing chunks of data to the destination
-- Duplex - it is both readable and writeable. Recommended to use _pipe_ in case reading is faster/slower than writing
-- Transform - modifying data in output stream based on the input stream. Example is zipping
-
 ## Production and Development dependencies
 
 For our project we usually use many 3rd party packages, but some of them are for production version and some for development.
