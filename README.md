@@ -127,4 +127,6 @@ Below is the recommended learning order to get familiar with the different parts
 
 1. Event Loop - get some understanding of how the event loop is working
 2. Events - contains info about the EventEmmiter and the events package
-3. Buffers
+3. Buffers - contains info about buffers to deal with binary and hexadecimal data
+4. FileSystem - contains info about dealing with files
+5. Streams - contains info about streams

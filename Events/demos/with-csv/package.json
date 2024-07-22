@@ -9,9 +9,9 @@
   "author": "Biser Ivanov",
   "license": "MIT",
   "dependencies": {
-    "csv-parse": "^5.3.0"
+    "csv-parse": "^5.5.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^3.1.4"
   }
 }
