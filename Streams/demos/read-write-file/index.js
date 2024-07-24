@@ -1,17 +1,25 @@
-// in the text.txt you can find instructions to debug the code to get overview of how the stream is created
-const fs = require('node:fs');
+const fs = require('node:fs/promises');
 
-// with highWaterMark we will create smaller chunks, otherwise we would need a lot of text
-const readable = fs.createReadStream(__dirname + '/text.txt', {
-  encoding: 'utf-8',
-  highWaterMark: 128, // default is 64kb 64 * 1024
-});
+(async () => {
+  const fileHandleRead = await fs.open('input.txt', 'r');
+  const fileHandleWrite = await fs.open('output.txt', 'w');
 
-const writeable = fs.createWriteStream(__dirname + '/output.txt');
+  const streamRead = fileHandleRead.createReadStream({
+    highWaterMark: 64 * 1024,
+  });
 
-readable.on('data', (chunk) => {
-  console.log('---CHUNK START---');
-  console.log(chunk);
-  console.log('---CHUNK END---');
-  writeable.write(chunk);
-});
+  const streamWrite = fileHandleWrite.createWriteStream();
+
+  streamRead.on('data', (chunk) => {
+    // once the internal buffer is full, the write method will return false
+    // at that point we want to pause the read stream to avoid memory issues, because the read stram is reading chunks of 64kb and write stream is writing 16kb
+    if (!streamWrite.write(chunk)) {
+      streamRead.pause();
+    }
+  });
+
+  // resume the read stream after the internal buffer of the write stream is drained and we can continue writing
+  streamWrite.on('drain', () => {
+    streamRead.resume();
+  });
+})();

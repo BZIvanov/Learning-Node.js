@@ -112,6 +112,16 @@ Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet wit
 
 - **idempotent operation** - when a request can be retransmitted or retried with no additional side effects. For example if we make a payment and for some reason we don't get response, but the payment still happened
 
+## Debugging with VS code
+
+To debug a code and analyze what is happening do the next steps:
+
+1. Place debug red dot anywhere in the javascript file
+2. Click the debug icon in Visual Studio code (left-hand side icons menu)
+3. Click the _JavaScript Debug Terminal_ button
+4. In the debug terminal run the file with node, for example _node index.js_
+5. You can now debug the code and inspect the process of what is happening.
+
 ## Content
 
 Below is the recommended learning order to get familiar with the different parts of Node.js
