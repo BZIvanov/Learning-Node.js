@@ -93,3 +93,30 @@ Similar to writable streams, if you write a large chunk of data, it can fill up 
 - **Events**: Duplex streams emit `data`, `end`, `drain`, and `error` events among others.
 - **Methods**: Key methods include `write()`, `end()`, `push()`, and `pipe()`.
 - **Properties**: Properties like `writableHighWaterMark` and `readableHighWaterMark` control the buffer sizes for writing and reading, respectively.
+
+### Transform stream
+
+Transform stream is a type of Duplex stream where the output is computed based on the input. This means it can be read from and written to, but it also performs some transformation on the data as it passes through.
+
+#### Key Concepts
+
+- **Transform Stream**: It is a stream that can be read from and written to, with the additional capability of transforming the data as it flows through.
+- **Internal Buffer**: Transform streams have internal buffers for both reading and writing, similar to Duplex streams.
+- **Methods and Events**: Transform streams have methods and events for both reading and writing data, as well as for performing the transformation.
+
+#### Internal Buffers
+
+A transform stream has separate internal buffers for reading and writing. This allows it to manage data flow efficiently.
+
+#### Buffer Overflow
+
+Similar to writable and duplex streams, if you write a large chunk of data, it can fill up the internal buffer quickly, causing potential memory issues. To manage this:
+
+- **Draining**: When the writable buffer is full, the stream will return `false`, and you need to listen for the `drain` event to resume writing.
+- **Readable Stream**: For large data chunks, create a readable stream to break the data into smaller chunks and pipe it to the transform stream.
+
+#### Key Points
+
+- **Events**: Transform streams emit `data`, `end`, `drain`, `finish` and `error` events among others.
+- **Methods**: Key methods include `write()`, `end()`, `push()`, `pipe()` and `_transform()` for the transformation logic.
+- **Properties**: Properties like `writableHighWaterMark` and `readableHighWaterMark` control the buffer sizes for writing and reading, respectively.
