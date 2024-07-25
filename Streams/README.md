@@ -9,9 +9,9 @@ There are 4 types of streams
 - Duplex - it is both readable and writeable. Recommended to use _pipe_ in case reading is faster/slower than writing
 - Transform - modifying data in output stream based on the input stream. Example is zipping
 
-## Writeable stream
+### Writeable stream
 
-Writable streams in Node.js have events, properties, and methods that help manage the writing of data to a destination.
+Writable streams have events, properties, and methods that help manage the writing of data to a destination.
 
 #### Internal Buffer
 
@@ -37,9 +37,9 @@ Draining is the process of emptying the buffer to free up space for more data. W
 - **Methods**: Important methods are `write()` (to write data), `end()` (to signal the end of writing), and `cork()`/`uncork()` (to control the buffering).
 - **Properties**: Properties like `writableHighWaterMark` (buffer size) and `writableLength` (current buffer usage) help manage the stream’s state.
 
-## Readable stream
+### Readable stream
 
-Readable streams in Node.js also have events, properties, and methods that help manage the reading of data from a source.
+Readable streams in also have events, properties, and methods that help manage the reading of data from a source.
 
 #### Internal Buffer
 
@@ -66,3 +66,30 @@ When the buffer is full, the readable stream temporarily stops reading data from
 - **Events**: Key events include `data` (when a chunk of data is available), `end` (when the stream has no more data), and `error` (when an error occurs).
 - **Methods**: Important methods are `push()` (to add data to the buffer), `read()` (to manually read data), and `pipe()` (to pipe the stream to a writable stream).
 - **Properties**: Properties like `readableHighWaterMark` (buffer size) and `readableLength` (current buffer usage) help manage the stream’s state.
+
+### Duplex stream
+
+Duplex stream is a type of stream that implements both readable and writable stream interfaces. This means it can be used to read and write data simultaneously.
+
+#### Key Concepts
+
+- **Duplex Stream**: It is a stream that can be read from and written to. It inherits from both the Readable and Writable stream classes.
+- **Internal Buffer**: Like readable and writable streams, duplex streams have internal buffers for both reading and writing.
+- **Methods and Events**: Duplex streams have methods and events for both reading and writing data.
+
+#### Internal Buffers
+
+A duplex stream has separate internal buffers for reading and writing. This allows it to manage data flow efficiently.
+
+#### Buffer Overflow
+
+Similar to writable streams, if you write a large chunk of data, it can fill up the internal buffer quickly, causing potential memory issues. To manage this:
+
+- **Draining**: When the writable buffer is full, the stream will return `false`, and you need to listen for the `drain` event to resume writing.
+- **Readable Stream**: For large data chunks, create a readable stream to break the data into smaller chunks and pipe it to the duplex stream.
+
+#### Key Points
+
+- **Events**: Duplex streams emit `data`, `end`, `drain`, and `error` events among others.
+- **Methods**: Key methods include `write()`, `end()`, `push()`, and `pipe()`.
+- **Properties**: Properties like `writableHighWaterMark` and `readableHighWaterMark` control the buffer sizes for writing and reading, respectively.
