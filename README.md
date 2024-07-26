@@ -131,3 +131,4 @@ Below is the recommended learning order to get familiar with the different parts
 3. Buffers - contains info about buffers to deal with binary and hexadecimal data
 4. FileSystem - contains info about dealing with files
 5. Streams - contains info about streams
+6. Networking - contains info about networking
