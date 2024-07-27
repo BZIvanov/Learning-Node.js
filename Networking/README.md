@@ -114,3 +114,33 @@ TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are two cor
 | Use Cases                 | Web browsing, email, file transfers, remote access | Video streaming, online gaming, VoIP, DNS |
 
 In summary, TCP is used when reliability and order are critical, while UDP is preferred for applications where speed is essential and some data loss can be tolerated.
+
+## Ports
+
+Port is a logical endpoint that allows communication between devices over a network. Ports are identified by port numbers, which are standardized by the Internet Assigned Numbers Authority (IANA) and fall into three main ranges:
+
+- **Well-Known Ports (0-1023)**: Reserved for common services and widely-used protocols.
+- **Registered Ports (1024-49151)**: Assigned to user processes or applications that are not as common as well-known services but still require unique port numbers.
+- **Dynamic/Private Ports (49152-65535)**: Usually used for temporary or private purposes, often assigned dynamically to client applications when initiating connections.
+
+Ports allow multiple services to run on a single device by directing incoming and outgoing data to the correct application or process.
+
+We can run two different applications on the same port if they are using different transport protocols (for example TCP and UDP). This is because TCP and UDP are separate protocols that operate independently of each other, and the operating system maintains separate port spaces for each protocol.
+
+### Well-known ports
+
+Example of some well-known ports:
+
+- 21 and 21: FTP
+- 22: SSH
+- 25: SMTP
+- 80: HTTP
+- 443: HTTPS
+
+### Registered Ports
+
+Example of some registered ports:
+
+- 3306: MySQL
+- 5432: PostgreSQL
+- 6379: Redis
