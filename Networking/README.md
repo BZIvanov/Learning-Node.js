@@ -144,3 +144,69 @@ Example of some registered ports:
 - 3306: MySQL
 - 5432: PostgreSQL
 - 6379: Redis
+
+## IP addresses
+
+IPv4 and IPv6 are both versions of Internet Protocol (IP) used to identify devices on a network and route traffic across the internet.
+
+### Comapison between IPv4 and IPv6
+
+#### Address length
+
+IPv4: Uses 32-bit addresses, which allows for about 4.3 billion unique addresses (2^32). Example: 192.168.1.1
+
+IPv6: Uses 128-bit addresses, which allows for approximately 3.4×10^38 unique addresses (2^128). Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+
+#### Address notation
+
+IPv4: Written in decimal format, divided into four 8-bit octets separated by periods (e.g., 192.168.0.1).
+
+IPv6: Written in hexadecimal format, divided into eight 16-bit blocks separated by colons (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334). Leading zeros can be omitted, and consecutive blocks of zeros can be compressed to "::".
+
+### IPv4 Network
+
+The example notation 47.12.0.0/16 is a form of CIDR (Classless Inter-Domain Routing) notation, which is used to specify IP addresses and their associated network prefixes.
+
+- **47.12.0.0**: This is the base example IP address of the network.
+- **/16**: This indicates the subnet mask, which tells us how many bits of the IP address are used for the network portion.
+
+#### Subnet Mask
+
+The subnet mask is a 32-bit number that divides the IP address into the network and host portions. The /16 means that the first 16 bits of the IP address are used for the network portion, and the remaining bits are used for the host portion.
+
+##### Binary Representation
+
+- **IP Address**: 47.12.0.0 in binary is 00101111.00001100.00000000.00000000
+- **Subnet Mask**: /16 means the first 16 bits are 1s, and the remaining 16 bits are 0s. In binary, the subnet mask is 11111111.11111111.00000000.00000000.
+
+#### Network and Host Portions
+
+- **Network Portion**: The first 16 bits (47.12) identify the network. In binary, this is 00101111.00001100
+- **Host Portion**: The last 16 bits identify the individual hosts within that network. In binary, this is 00000000.00000000 to 11111111.11111111
+
+#### Number of Hosts
+
+The number of available host addresses in a subnet is calculated by raising 2 to the power of the number of host bits, and then subtracting 2 (one for the network address and one for the broadcast address).
+
+For 47.12.0.0/16:
+
+- Number of host bits: 32 - 16 = 16 bits
+- Number of hosts: $ 2^{16} - 2 = 65536 - 2 = 65534 $
+
+So, this subnet can have up to 65,534 individual hosts.
+
+## Domain Name System (DNS)
+
+DNS (Domain Name System) translates human-readable domain names (like www.example.com) into IP addresses (like 192.0.2.1), which are used by computers to identify each other on the network.
+
+### DNS Records
+
+- **A Record**: Maps a domain to an IPv4 address.
+- **AAAA Record**: Maps a domain to an IPv6 address.
+- **CNAME Record**: Alias for another domain (canonical name).
+- **MX Record**: Specifies mail servers for the domain.
+- **TXT Record**: Holds text information, often for verification purposes.
+
+### Caching
+
+To speed up the process and reduce load on DNS servers, DNS responses are often cached by the resolver and your device. This means subsequent requests for the same domain can be answered more quickly without querying the DNS servers again.

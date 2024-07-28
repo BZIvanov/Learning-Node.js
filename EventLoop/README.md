@@ -1,5 +1,7 @@
 # Event loop
 
+The Event Loop is a fundamental concept in Node.js that allows non-blocking I/O operations by offloading operations to the system kernel whenever possible.
+
 #### Phases
 
 Every iteration of the event loop is also called **tick**.
@@ -18,6 +20,13 @@ Each phase has a callback queue with callbacks to be executed.
 Promises and _nextTick_ are considered microtasks and they run during each phase of the event loop.
 
 Microtasks are executed after the main thread and each phase of the event loop. Microtasks created by process.nextTick are executed before those created by promises.
+
+### Execution Order
+
+1. Current operation completes.
+2. Execute all `process.nextTick` callbacks.
+3. Execute all other microtasks (e.g., Promises).
+4. Continue with the next phase of the Event Loop.
 
 ## Official docs
 
