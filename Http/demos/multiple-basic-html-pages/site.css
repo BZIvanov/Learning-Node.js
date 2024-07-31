@@ -1,0 +1,11 @@
+body {
+  background: coral;
+}
+
+h1 {
+  color: rgb(29, 2, 65);
+}
+
+button {
+  margin-block: 10px;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <!-- here is our css file with href specified on which path we will use it -->
+    <link rel="stylesheet" href="/site.css" />
+    <!-- here we have script file which will be requested with path as the src attribute -->
+    <script src="/get-message.js" async></script>
+  </head>
+  <body>
+    <div>
+      <h1>Welcome!</h1>
+      <p>This html file is now loaded asynchronous with the readFile method!</p>
+      <a href="/about.html">About Us</a>
+    </div>
+
+    <div>
+      <button onclick="getMessage()">Get Message</button>
+    </div>
+  </body>
+</html>

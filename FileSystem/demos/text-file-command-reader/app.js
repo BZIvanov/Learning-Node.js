@@ -1,3 +1,4 @@
+// fs module will allow us to work with file system (read, write files etc.)
 const fs = require('node:fs/promises');
 
 const CREATE_FILE = 'CREATE';
