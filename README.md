@@ -108,10 +108,6 @@ Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet wit
 
 - exports vs module.exports - they are basically the same, because they point to the same object, but if we assign new value to exports instead of adding new property to the object we will break the reference to the object and exports and module.exports will become different things. So in general it is better to always just use module.exports to avoid any confusion.
 
-## Terminology
-
-- **idempotent operation** - when a request can be retransmitted or retried with no additional side effects. For example if we make a payment and for some reason we don't get response, but the payment still happened
-
 ## Debugging with VS code
 
 To debug a code and analyze what is happening do the next steps:
