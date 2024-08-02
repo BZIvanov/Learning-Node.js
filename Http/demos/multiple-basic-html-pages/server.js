@@ -30,7 +30,7 @@ function frontController(req, res) {
     // here this time we get css file not html
     fs.readFile('./site.css', 'utf-8', (err, data) => {
       res.writeHead(200, {
-        // for css we use txt/css
+        // for css we use txt/css mime type
         'content-type': 'text/css',
       });
       res.write(data);

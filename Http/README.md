@@ -61,6 +61,14 @@ HTTP status codes are three-digit numbers returned by the server in response to 
 
 - **idempotent operation** - when a request can be retransmitted or retried with no additional side effects. For example if we make a payment and for some reason we don't get response, but the payment still happened. Idempotent Methods: methods where multiple identical requests result in the same outcome (e.g., GET, PUT, DELETE).
 
+## HTTP proxy
+
+An HTTP proxy is an intermediary server that acts as a gateway between a user's device and the internet. When a user makes a web request (like trying to visit a website), the request is first sent to the HTTP proxy server. The proxy server then forwards this request to the target web server. Once the web server responds, the proxy server sends the response back to the user.
+
+## HTTP cookies
+
+HTTP cookies are small pieces of data that are stored on a user's device by a web browser when they visit a website. These cookies are sent back to the server with every subsequent request to the same site, allowing the server to recognize the user and remember certain information about their visit.
+
 ## Development and testing tools
 
 ### Postman
