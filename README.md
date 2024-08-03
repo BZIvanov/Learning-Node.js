@@ -43,21 +43,6 @@ The control flow function does the following things:
 - limit concurrency
 - calls the next step in the program
 
-## spawn() and fork()
-
-- spawn - used to launch new process. Does not create new V8 instance
-
-```bash
-child_process.spawn(command[, args][, options])
-```
-
-- fork - special instance of spawn() that executes a new instance of the V8 engine
-
-```bash
-
-child_process.fork(modulePath[, args][, options])
-```
-
 ## Production and Development dependencies
 
 For our project we usually use many 3rd party packages, but some of them are for production version and some for development.
@@ -129,3 +114,4 @@ Below is the recommended learning order to get familiar with the different parts
 5. Streams - contains info about streams
 6. Networking - contains info about networking
 7. Http
+8. UNIX
