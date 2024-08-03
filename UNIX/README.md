@@ -45,3 +45,64 @@ report.txt  notes.md
 $ cat report.txt
 This is a sample report.
 ```
+
+## File permissions
+
+### Viewing Permissions
+
+Run the following command `ls -l` in the terminal on your macOS or Linux machine. Assuming your are in a folder with the following content: a directory named _items_ and two files _index.js_ and _my-file.txt_, you will a similar output:
+
+```
+total 16
+-rw-r--r--  1 john staff  29  Aug 3 22:47   index.js
+drwxr-xr-x  2 john staff  64  Aug 3 22:47   items
+-rw-r--r--  1 john staff  17  Aug 3 22:47   my-file.txt
+```
+
+### Understanding the Output
+
+The first column of the output represents the file permissions:
+
+- **File Type**: The first character indicates the type of the file:
+
+  - `-` means it is a file
+  - `d` means it is a directory
+
+- **User Permissions**: The next three characters represent the permissions for the file's owner (in this case, john):
+
+  - `r` means read permission
+  - `w` means write permission
+  - `x` means execute permission
+
+- **Group Permissions**: The next three characters represent the permissions for the group associated with the file (in this case, staff).
+
+- **Other Permissions**: The last three characters represent the permissions for others (i.e., anyone not the owner or in the group).
+
+### Modifying Permissions
+
+To change the permissions of a file, you can use the `chmod` command. For example, run the following command to remove read and write rights for the current user (john) on _my-file.txt_ run `chmod u-r-w ./my-file.txt`
+
+```
+total 16
+-rw-r--r--  1 john staff  29  Aug 3 22:47   index.js
+drwxr-xr-x  2 john staff  64  Aug 3 22:47   items
+----r--r--  1 john staff  17  Aug 3 22:47   my-file.txt
+```
+
+### Testing the Changes
+
+Now, try to read the file with the following command `cat my-file.txt` and you will see the following result
+
+```
+cat: my-file.txt: Permission denied
+```
+
+This is because the read (r) and write (w) permissions have been removed for the user john.
+
+### Restoring Permissions
+
+To restore the read and write permissions for john, run `chmod u+r+w ./my-file.txt`.
+
+### Checking Your Username
+
+To verify which user you are currently logged in as, run `whoami`. This will return your current username.
