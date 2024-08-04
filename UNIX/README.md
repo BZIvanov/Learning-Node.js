@@ -106,3 +106,26 @@ To restore the read and write permissions for john, run `chmod u+r+w ./my-file.t
 ### Checking Your Username
 
 To verify which user you are currently logged in as, run `whoami`. This will return your current username.
+
+## Absolute and Relative Path
+
+**Absolute Path**: Provides the full, exact location from the root directory. It is independent of the current location.
+
+**Relative Path**: Specifies a location relative to the current directory. It is shorter but dependent on where you are in the directory tree.
+
+In Node.js `path` module help us to work with paths.
+
+### Absolute path
+
+Starts with / (slash). In UNIX-like systems, absolute paths always begin with a /, which represents the root directory. This ensures that the path is independent of the current working directory.
+
+Example: `/home/user/documents/report.txt`
+
+### Relative path
+
+Does not start with /. Since it's relative to the current directory, it does not begin with a /. Instead, it might start with a directory name or a dot (.) representing the current directory.
+
+Examples:
+
+- `documents/report.txt`
+- `./documents/report.txt`

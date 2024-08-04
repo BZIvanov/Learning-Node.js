@@ -1,5 +1,11 @@
 # Child process
 
+A child process is a concept in computing that refers to a process that is created by another process, known as the parent process.
+
+In UNIX, a child process is a duplicate of the parent process created using the `fork()` system call and can execute the same or different code as the parent process.
+
+In Node.js, a child process is a separate process created using the `child_process` module, which allows for executing commands or running separate Node.js instances, with communication between the parent and child process handled through streams or IPC.
+
 ## spawn()
 
 `spawn()` is used to launch new process. Does not create new V8 instance
