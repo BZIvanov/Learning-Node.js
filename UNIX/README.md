@@ -129,3 +129,41 @@ Examples:
 
 - `documents/report.txt`
 - `./documents/report.txt`
+
+## stdin, stdout, stderr
+
+In UNIX, stdin, stdout, and stderr are standard streams that handle input and output for command-line programs.
+
+### File descriptors
+
+In UNIX and UNIX-like systems, file descriptors are integer values that represent open files or streams. The most commonly used file descriptors are:
+
+- 0 for stdin (standard input)
+- 1 for stdout (standard output)
+- 2 for stderr (standard error)
+
+Example: To redirect both stdout and stderr to the same file, you can use: `ls nonexistentfile > output.txt 2>&1`. This command redirects both the standard output and standard error to output.txt.
+
+### stdin (Standard Input)
+
+**stdin** is the standard input stream, which programs read from by default.
+
+It typically comes from the keyboard but can also be redirected from a file or another command.
+
+Example: When you run a command and then type input, like with `cat`, the input comes from stdin.
+
+### stdout (Standard Output)
+
+**stdout** is the standard output stream, which programs use to send their output.
+
+By default, stdout is displayed in the terminal, but it can be redirected to a file or another command.
+
+Example: The output of `ls` (`ls > filelist.txt`) is sent to stdout.
+
+### stderr (Standard Error)
+
+**stderr** is the standard error stream, used specifically for error messages and diagnostics.
+
+Like stdout, stderr is usually displayed in the terminal, but it can be redirected separately from stdout.
+
+Example: If a command fails, the error message is sent to stderr (`ls nonexistentfile 2> errors.txt`).
