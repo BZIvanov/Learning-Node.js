@@ -167,3 +167,31 @@ Example: The output of `ls` (`ls > filelist.txt`) is sent to stdout.
 Like stdout, stderr is usually displayed in the terminal, but it can be redirected separately from stdout.
 
 Example: If a command fails, the error message is sent to stderr (`ls nonexistentfile 2> errors.txt`).
+
+## Pipes
+
+With pipes we can send data from one process to another.
+
+### Examples
+
+Here is the content of our `index.js` javascript file:
+
+```javascript
+const { stdin, stdout } = require('node:process');
+
+stdin.on('data', (data) => {
+  stdout.write(`GOT DATA: ${data.toString('utf-8')}`);
+});
+```
+
+Example of how to send data from the terminal to node.js process and also convert the text to uppercase
+
+```bash
+echo "some text" | node index.js | tr 'a-z' 'A-Z'
+```
+
+With the above command and the js file, we will get the following result:
+
+```
+GOT DATA: SOME TEXT
+```
