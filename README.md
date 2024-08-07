@@ -107,7 +107,7 @@ To debug a code and analyze what is happening do the next steps:
 
 Below is the recommended learning order to get familiar with the different parts of Node.js
 
-1. Event Loop - get some understanding of how the event loop is working
+1. EventLoop - get some understanding of how the event loop is working
 2. Events - contains info about the EventEmmiter and the events package
 3. Buffers - contains info about buffers to deal with binary and hexadecimal data
 4. FileSystem - contains info about dealing with files

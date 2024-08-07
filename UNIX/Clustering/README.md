@@ -17,3 +17,7 @@ console.log(os.cpus());
 // get count of CPUs
 console.log(os.availableParallelism());
 ```
+
+## PM2
+
+PM2 is popular NPM package to handle clustering.
