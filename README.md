@@ -115,3 +115,4 @@ Below is the recommended learning order to get familiar with the different parts
 6. Networking - contains info about networking
 7. Http
 8. UNIX
+9. Compression
