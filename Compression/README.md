@@ -27,6 +27,10 @@ Deflate is another compression algorithm based on a combination of the LZ77 algo
 
 Content-Encoding Header: `deflate`
 
+## Choosing compression type
+
+There is no one best solution. It is trade-off between file size and processing time. For example 30 seconds and 30MBs vs. 120 seconds and 20MBs
+
 ## Compression data types
 
 - **Lossless Compression**: Ideal for applications where data integrity is crucial. It retains all the original data and is used in contexts where accuracy cannot be compromised, such as text files, databases, and certain image formats like PNG.

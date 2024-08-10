@@ -116,3 +116,5 @@ Below is the recommended learning order to get familiar with the different parts
 7. Http
 8. UNIX
 9. Compression
+10. MultiThreading
+11. Cryptography

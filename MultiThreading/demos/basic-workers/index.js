@@ -1,4 +1,4 @@
-const { isMainThread, Worker, workerData } = require('worker_threads');
+const { isMainThread, Worker, workerData } = require('node:worker_threads');
 
 /*
   Worker threads are part of the same process, which is why we will see the process ids for both workers below

@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 // generate salt is function which will be applied on the password to make it hard to guess
 function generateSalt() {
