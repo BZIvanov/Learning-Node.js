@@ -1,5 +1,9 @@
 # Process
 
+A process is an instance of a program that is being executed. When you run a program on your computer, the operating system creates a process for that program. This process includes the program's code, its current activity (state), memory space, and other resources like file handles and network connections.
+
+Think of a process as a container that holds everything needed for a program to run.
+
 ## Process ID (PID) and Parent Process ID (PPID)
 
 ### PID
