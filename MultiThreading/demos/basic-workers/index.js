@@ -1,4 +1,9 @@
-const { isMainThread, Worker, workerData } = require('node:worker_threads');
+const {
+  isMainThread,
+  Worker,
+  workerData,
+  threadId,
+} = require('node:worker_threads');
 
 /*
   Worker threads are part of the same process, which is why we will see the process ids for both workers below
@@ -13,6 +18,6 @@ if (isMainThread) {
   new Worker(__filename, { workerData: [5, 2, 9, 1] });
   new Worker(__filename, { workerData: [2, 0, 8, 3] });
 } else {
-  console.log(`Worker, Process id: ${process.pid}`);
+  console.log(`Worker, Process ID: ${process.pid}, Thread ID: ${threadId}`);
   console.log(`${workerData} sorted is ${workerData.sort()}`);
 }
