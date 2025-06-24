@@ -1,5 +1,7 @@
 # Multi threading
 
+While the JavaScript code in Node.js runs on a single thread, Node.js can use multiple threads for I/O operations and background tasks, and explicitly supports multithreading via the `worker_threads` module.
+
 ## Multi-Threading Basics
 
 Imagine you have a computer program that needs to do several tasks at the same time. For example, a video game that plays music, handles user input, and updates the screen all at once. Instead of doing one task at a time, the program can create threads—which are like mini-programs running inside the main program. These threads can run in parallel, allowing multiple tasks to be done almost simultaneously.

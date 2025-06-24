@@ -8,12 +8,12 @@ Every iteration of the event loop is also called **tick**.
 
 Each phase has a callback queue with callbacks to be executed.
 
-- timers - _setTimeout_ and _setInterval_ run in this phase
-- I/O operations - used for fs operations, networking etc...
-- idle - this is internal work phase for node.js so we don't really deal with it
-- poll - calculates the blocking time in every iteration to handle I/O callbacks. Newly incoming requests are hanled here (for example express API requests).
-- check - _setImmediate_ runs in this phase. Handles the callbacks scheduled by setImmediate
-- close - close events callbacks are hanled during this phase
+- **timers** - _setTimeout_ and _setInterval_ run in this phase
+- **I/O operations** - used for fs operations, networking etc...
+- **idle** - this is internal work phase for node.js so we don't really deal with it
+- **poll** - calculates the blocking time in every iteration to handle I/O callbacks. Newly incoming requests are hanled here (for example express API requests).
+- **check** - _setImmediate_ runs in this phase. Handles the callbacks scheduled by setImmediate
+- **close** - close events callbacks are hanled during this phase
 
 #### Microtask queue
 

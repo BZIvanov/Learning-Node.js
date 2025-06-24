@@ -1,22 +1,6 @@
 # Node.js
 
-## General info
-
-Node.js is asynchronous event driven javascript runtime.
-
-Node.js is single threaded.
-
-## Dependencies
-
-Some of the Node.js dependencies are listed below with short explanation.
-
-#### V8
-
-Node.js developed on Chrome's V8 javascript engine that compiles the javaScript code directly into the native machine code. V8 takes your JavaScript code and converts it into instructions your computer can understand directly, making Node.js applications run efficiently. This is similar to how Chrome uses V8 to execute JavaScript on web pages.
-
-#### libuv
-
-libuv is a package used for handling asynchronous I/O operations. It is written in C programming language.
+**Node.js** is asynchronous event driven javascript runtime.
 
 ## API functions
 
@@ -53,14 +37,6 @@ npm install nodemon --save-dev
 ```
 
 -dev in the end will place it in dev dependencies in the package.json file.
-
-## REPL
-
-Repl stands for Read, Eval, Print, Loop. To start the repl in the terminal just type node like below. We can provide unlimited commands and they will be executed.
-
-```bash
-node
-```
 
 ## Global Objects
 
@@ -103,18 +79,26 @@ To debug a code and analyze what is happening do the next steps:
 4. In the debug terminal run the file with node, for example _node index.js_
 5. You can now debug the code and inspect the process of what is happening.
 
+## Node.js Frameworks
+
+### Nest.js
+
+Check out [Nest.js repository](https://github.com/BZIvanov/Learning-NestJS) for learning materials for Nest.js.
+
 ## Content
 
-Below is the recommended learning order to get familiar with the different parts of Node.js
+Below is the recommended learning path to get familiar with key parts of Node.js:
 
-1. EventLoop - get some understanding of how the event loop is working
-2. Events - contains info about the EventEmmiter and the events package
-3. Buffers - contains info about buffers to deal with binary and hexadecimal data
-4. FileSystem - contains info about dealing with files
-5. Streams - contains info about streams
-6. Networking - contains info about networking
-7. Http
-8. UNIX
-9. Compression
-10. MultiThreading
-11. Cryptography
+1. **GettingStarted** – Learn how to run Node.js code using REPL and JavaScript files.
+2. **Dependencies** – Learn about the underlying technologies like V8 and libuv that power Node.js.
+3. **EventLoop** – Understand how Node.js handles asynchronous operations behind the scenes.
+4. **Events** – Explore the `EventEmitter` class and how custom events work.
+5. **Buffers** – Work with binary data using Node.js buffers.
+6. **FileSystem** – Read from and write to files using the `fs` module.
+7. **Streams** – Learn about reading and writing data in chunks using streams.
+8. **Networking** – Build TCP/UDP servers and clients using the `net` and `dgram` modules.
+9. **Http** – Create HTTP servers and handle web requests.
+10. **UNIX** – Use Node.js to interact with Unix commands and system processes.
+11. **Compression** – Compress and decompress data using built-in modules like `zlib`.
+12. **MultiThreading** – Learn about worker threads and background processing.
+13. **Cryptography** – Use Node’s `crypto` module for hashing, encryption, and secure operations.
