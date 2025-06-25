@@ -27,17 +27,6 @@ The control flow function does the following things:
 - limit concurrency
 - calls the next step in the program
 
-## Production and Development dependencies
-
-For our project we usually use many 3rd party packages, but some of them are for production version and some for development.
-To separate them, when installing we can specify which are for development only the following way:
-
-```javascript
-npm install nodemon --save-dev
-```
-
--dev in the end will place it in dev dependencies in the package.json file.
-
 ## Global Objects
 
 We have some global object which we can use directly, without declaring or importing them.
@@ -90,15 +79,16 @@ Check out [Nest.js repository](https://github.com/BZIvanov/Learning-NestJS) for 
 Below is the recommended learning path to get familiar with key parts of Node.js:
 
 1. **GettingStarted** – Learn how to run Node.js code using REPL and JavaScript files.
-2. **Dependencies** – Learn about the underlying technologies like V8 and libuv that power Node.js.
-3. **EventLoop** – Understand how Node.js handles asynchronous operations behind the scenes.
-4. **Events** – Explore the `EventEmitter` class and how custom events work.
-5. **Buffers** – Work with binary data using Node.js buffers.
-6. **FileSystem** – Read from and write to files using the `fs` module.
-7. **Streams** – Learn about reading and writing data in chunks using streams.
-8. **Networking** – Build TCP/UDP servers and clients using the `net` and `dgram` modules.
-9. **Http** – Create HTTP servers and handle web requests.
-10. **UNIX** – Use Node.js to interact with Unix commands and system processes.
-11. **Compression** – Compress and decompress data using built-in modules like `zlib`.
-12. **MultiThreading** – Learn about worker threads and background processing.
-13. **Cryptography** – Use Node’s `crypto` module for hashing, encryption, and secure operations.
+2. **PackageManager** – Understand npm, package.json, and scripts
+3. **Dependencies** – Learn about the underlying technologies like V8 and libuv that power Node.js.
+4. **EventLoop** – Understand how Node.js handles asynchronous operations behind the scenes.
+5. **Events** – Explore the `EventEmitter` class and how custom events work.
+6. **Buffers** – Work with binary data using Node.js buffers.
+7. **FileSystem** – Read from and write to files using the `fs` module.
+8. **Streams** – Learn about reading and writing data in chunks using streams.
+9. **Networking** – Build TCP/UDP servers and clients using the `net` and `dgram` modules.
+10. **Http** – Create HTTP servers and handle web requests.
+11. **UNIX** – Use Node.js to interact with Unix commands and system processes.
+12. **Compression** – Compress and decompress data using built-in modules like `zlib`.
+13. **MultiThreading** – Learn about worker threads and background processing.
+14. **Cryptography** – Use Node’s `crypto` module for hashing, encryption, and secure operations.
