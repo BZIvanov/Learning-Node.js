@@ -90,8 +90,8 @@ The key thing here is that exports by default is an empty object
 
 ```javascript
 // here is ok not to use module because we are not reasigning the default exports object. Now our exports object will have an additional field called fruit
-exports.fruit = 'apple';
+exports.fruit = "apple";
 
 // here we need to use module because we asign completely new array to the exports
-module.exports = ['apple', 'kiwi'];
+module.exports = ["apple", "kiwi"];
 ```

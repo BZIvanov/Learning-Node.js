@@ -30,4 +30,43 @@ Microtasks are executed after the main thread and each phase of the event loop. 
 
 ## Official docs
 
+Read [here](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) for more details about the Event loop.
+
 Read [here](https://nodejs.org/en/learn/asynchronous-work/dont-block-the-event-loop) for more info related to the example in file `f.js` in this folder.
+
+## API functions
+
+In nodejs there are two types of API functions:
+
+- synchronous, blocking functions
+- asynchronous, non-blocking functions
+
+Node.js provides two main types of API functions:
+
+- **Synchronous (blocking)** – These functions block the execution of further code until they complete. They are simpler but can freeze the entire process if they take time (e.g., reading a large file).
+
+```js
+const data = fs.readFileSync("file.txt", "utf-8"); // Blocks everything until file is read
+console.log(data);
+```
+
+- **Asynchronous (non-blocking)** – These functions start an operation and return immediately, allowing other code to run while waiting for the operation to finish. A callback, promise, or event is used to handle the result.
+
+```js
+fs.readFile("file.txt", "utf-8", (err, data) => {
+  if (err) throw err;
+  console.log(data); // Executed later
+});
+console.log("File read started"); // Runs immediately
+```
+
+Understanding the difference is essential for writing efficient, non-blocking Node.js applications — and it ties directly into how the event loop works.
+
+## Control flow
+
+The control flow function does the following things:
+
+- control the order of execution
+- collect data
+- limit concurrency
+- calls the next step in the program

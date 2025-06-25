@@ -2,36 +2,7 @@
 
 **Node.js** is asynchronous event driven javascript runtime.
 
-## API functions
-
-In nodejs there are two types of API functions:
-
-- synchronous, blocking functions
-- asynchronous, non-blocking functions
-
-## Control flow
-
-The control flow function does the following things:
-
-- control the order of execution
-- collect data
-- limit concurrency
-- calls the next step in the program
-
-## Global Objects
-
-We have some global object which we can use directly, without declaring or importing them.
-
-Some examples are:
-
-- global
-- process - for example process.argv
-- module - for example module.exports
-- console - for example console.log()
-
-You can find some more in the official documentation.
-
-## Additional
+## Cheat-sheets
 
 Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet with methods usage.
 
@@ -46,6 +17,10 @@ Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet wit
 ### Nest.js
 
 Check out [Nest.js repository](https://github.com/BZIvanov/Learning-NestJS) for learning materials for Nest.js.
+
+## Databases
+
+Check out [SQL repository](https://github.com/BZIvanov/Learning-SQL) for learning materials for SQL databases.
 
 ## Content
 

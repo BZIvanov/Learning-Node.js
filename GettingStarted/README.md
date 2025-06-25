@@ -44,3 +44,17 @@ Open your terminal and run:
 ```bash
 node app.js
 ```
+
+## Global Objects
+
+Node.js provides several global objects that you can use anywhere in your code without importing them:
+
+- **`global`** – Similar to `window` in the browser. Defines global scope.
+- **`process`** – Gives access to the current Node.js process (e.g., `process.argv`, `process.env`).
+- **`module`** – Metadata about the current module (e.g., `module.exports` to export functionality).
+- **`__dirname`** and **`__filename`** – Represent the path of the current directory and file.
+- **`console`** – Used for logging, like `console.log()` or `console.error()`.
+
+These globals are always available, but it's good practice to know when and why you're using them.
+
+You can read more in the [official Node.js docs](https://nodejs.org/api/globals.html).
