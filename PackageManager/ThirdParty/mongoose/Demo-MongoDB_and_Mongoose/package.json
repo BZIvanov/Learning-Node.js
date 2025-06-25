@@ -10,6 +10,6 @@
   "author": "BI",
   "license": "MIT",
   "dependencies": {
-    "mongoose": "5.8.7"
+    "mongoose": "6.13.6"
   }
 }
