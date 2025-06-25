@@ -43,6 +43,22 @@ npm install <package-name>
 
 This adds the package to your project and updates `package.json` and `package-lock.json`.
 
+## Understanding Semver (Semantic Versioning)
+
+When installing packages, you’ll often see version numbers like `2.3.4` in your `package.json` file. This follows the **Semver** (Semantic Versioning) convention:
+
+- **MAJOR** – breaking changes or incompatible API updates
+- **MINOR** – new features added without breaking existing functionality
+- **PATCH** – bug fixes and small internal improvements
+
+For example:
+
+- `1.4.2` → `1.5.0` adds a new feature
+- `1.4.2` → `1.4.3` fixes a bug
+- `1.4.2` → `2.0.0` introduces breaking changes
+
+> Prefixes like `^` and `~` in `package.json` allow version flexibility (e.g., `^1.4.2` allows updates up to but not including `2.0.0`).
+
 ## Adding and using scripts
 
 Inside `package.json`, the `scripts` field lets you define command shortcuts.
