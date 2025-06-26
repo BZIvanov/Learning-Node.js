@@ -30,3 +30,9 @@ node --inspect-brk index.js
 ```
 
 Then open `chrome://inspect` in Chrome and click **Open dedicated DevTools for Node**.
+
+## Debugging with ndb
+
+For debugging use npm module **ndb** which makes debugging using Node.js very easy.
+
+In the package.json for scripts we need to specify, that we will start our app with ndb.

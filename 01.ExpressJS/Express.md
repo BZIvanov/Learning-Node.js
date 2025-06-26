@@ -45,19 +45,7 @@ mongoexport --db project-one --collection movies --out resultExport.json
 mongoimport --db project-one --collection movies --file resultExport.json
 ```
 
-## Code quality
-
-To use ESLint and Prettier install all the dependencies and create config files for both es-lint and prettier.
-
-## Debugging
-
-For debugging use npm module **ndb** which makes debugging using Node.js very easy.
-
-In the package.json for scripts we need to specify, that we will start our app with ndb.
-
 #### Other Hints
-
-- **module** is a single file and **package** is multiple files working together. So package is a combination of multiple modules.
 
 - If we want to read file just once, not on every request, we can put the reading piece of code outside the createServer method, because outside that method the code is read only once.
 
