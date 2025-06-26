@@ -120,3 +120,7 @@ require("./logger")(); // Logs: "Logging" (no reload)
 This improves performance, avoids redundant execution, and allows you to share state across multiple files.
 
 Hint: You can step through `require()` in a debugger to see how Node checks its internal module cache.
+
+## Docs
+
+Read [here](https://nodejs.org/api/modules.html) for the official docs.
