@@ -1,3 +1,7 @@
+# Auth0
+
+[Auth0](https://auth0.com) is a popular authentication and authorization platform. You can use it to manage user logins, OAuth providers (like Google, GitHub), and JWT-based auth in Node.js applications.
+
 ## Protocol Endpoints
 
 In OAuth we use 2 grant types of endpoints:

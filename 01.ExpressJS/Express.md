@@ -1,49 +1,6 @@
 # Express
 
-## Installing MongoDB on Windows
-
-After you install MongoDB create the following folder _C:\data\db_ Without this folder MongoDB will not work.
-To start your mongo server go to installation folder _C:\Program Files\MongoDB\Server\4.2\bin_ and open the terminal there and run **mongod**
-
-## Installing MongoDB on Ubuntu
-
-1. Open a terminal and run the following command:
-
-```bash
-sudo apt-get install mongodb
-sudo apt-get update
-```
-
-2. To start the MongoDB run:
-
-```bash
-sudo service mongodb start
-mongo
-```
-
-3. And to check if everything is ok, in the same terminal where we have our **mongo** running, type:
-
-```bash
-show dbs;
-```
-
-The expected result is to see names of the databases we have and space in GBs they take.
-
-## Export/Import mongo database
-
-Note: use the normal terminal on the root level, not the mongodb terminal.
-
-1. Export - to export run the following command in the terminal
-
-```bash
-mongoexport --db project-one --collection movies --out resultExport.json
-```
-
-2. Import - to import run the following command in the terminal
-
-```bash
-mongoimport --db project-one --collection movies --file resultExport.json
-```
+TODO: move everything from this section to the Frameworks or other sections.
 
 #### Other Hints
 
@@ -70,16 +27,4 @@ next(somethingHere);
 
 // next here will go the next middleware in our app
 next();
-```
-
-- when exporting we usually have to use module.exports, but that is when we are reasigning the exported object, because exports is an object. Meaning if we want to export only a string we must use module.exports, but if we want to just attach property on the exports object we can skip module. part. Below is example.
-
-The key thing here is that exports by default is an empty object
-
-```javascript
-// here is ok not to use module because we are not reasigning the default exports object. Now our exports object will have an additional field called fruit
-exports.fruit = "apple";
-
-// here we need to use module because we asign completely new array to the exports
-module.exports = ["apple", "kiwi"];
 ```
