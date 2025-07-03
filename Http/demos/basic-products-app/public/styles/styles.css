@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,900");
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+main {
+  padding: 0 40px;
+}
+
+.nav {
+  padding: 10px 40px;
+}
+
+.nav ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.head-title {
+  text-align: center;
+  margin-top: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card {
+  flex: 1 1 calc(33% - 20px);
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.product-img {
+  width: 100%;
+  max-width: 350px;
+  max-height: 350px;
+}
+
+#search-form {
+  padding: 10px 0;
+}
+
+.form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.form-group label {
+  width: 30%;
+  text-align: right;
+}
+
+.input-field {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid lightgrey;
+  font-size: inherit;
+}
+
+textarea.input-field {
+  font-family: inherit;
+}
+
+.input-field:focus {
+  outline: none;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  margin-left: calc(30% + 10px);
+}

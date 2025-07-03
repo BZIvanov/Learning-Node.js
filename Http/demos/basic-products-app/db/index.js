@@ -12,7 +12,7 @@ module.exports.products.add = (product) => {
 
 module.exports.products.findByName = (name) => {
   for (const product of products) {
-    if (name === product) {
+    if (product.name === name) {
       return product;
     }
   }
