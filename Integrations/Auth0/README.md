@@ -15,3 +15,8 @@ Both types must use Transport Layer Security (TLS).
 ## OAuth Scope
 
 Scope in OAuth is a permission to do something within a protected resource on behalf of the resource owner.
+
+## Content of this section
+
+- **basic-auth0-app**
+- **auth-with-react**
