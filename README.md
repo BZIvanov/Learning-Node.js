@@ -33,3 +33,4 @@ Below is the recommended learning path to get familiar with key parts of Node.js
 17. **Cryptography** – Use Node's `crypto` module for hashing, encryption, and secure operations.
 18. **Security** – Learn best practices for writing secure Node.js applications.
 19. **Integrations** – Working with external services like `Auth0`.
+20. **Tooling** – Task runners and utilities powered by Node.js.

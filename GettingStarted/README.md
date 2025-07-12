@@ -58,7 +58,3 @@ Node.js provides several global objects that you can use anywhere in your code w
 These globals are always available, but it's good practice to know when and why you're using them.
 
 You can read more in the [official Node.js docs](https://nodejs.org/api/globals.html).
-
-## Code quality
-
-To use ESLint and Prettier install all the dependencies and create config files for both es-lint and prettier.
