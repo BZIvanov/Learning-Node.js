@@ -13,3 +13,4 @@ Check out [Nest.js repository](https://github.com/BZIvanov/Learning-NestJS) for 
 ## Content of this section
 
 - **basic-server**
+- **Middleware** - examples and info about Express.js middleware
