@@ -1,4 +1,6 @@
-# Websocket.io
+# Real Time Communication
+
+## socket.io
 
 Basic workflow:
 
@@ -10,3 +12,7 @@ below are variations to the above:
 
 - **io.to.emit** - will send to every connected client, but only for specific room
 - **socket.broadcast.to.emit** - sends event to every client except for the current, but clients are also only for specific room
+
+## Content of this section
+
+- **chat-app-demo**
