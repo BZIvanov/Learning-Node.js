@@ -1,7 +1,7 @@
 module.exports = {
   viewAll: (id, url) => `
     <div class="meme">
-      <a href="/memes/getDetails?id=${id}">
+      <a href="/getDetails?id=${id}">
         <img class="memePoster" src="${url}"/> 
       </a>         
     </div>`,
@@ -20,7 +20,7 @@ module.exports = {
     </div>`,
   detailsLink: (id, url) => `
     <div class="meme">
-      <a href="/memes/getDetails?id=${id}">
+      <a href="/getDetails?id=${id}">
       <img class="memePoster" src="${url}"/>          
     </div>`,
 };

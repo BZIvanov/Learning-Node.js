@@ -1,93 +1,86 @@
-const fs = require('fs');
-const url = require('url');
-const qs = require('querystring');
-const shortid = require('shortid');
-const path = require('path');
-const router = require('express').Router();
-const memeService = require('../services/meme');
-const genreService = require('../services/genre');
-const memeTemplates = require('../infrastructure/memeTemplates');
-const uiTemplates = require('../infrastructure/uiTemplates');
+const fs = require("node:fs");
+const url = require("node:url");
+const qs = require("node:querystring");
+const path = require("node:path");
+const shortid = require("shortid");
+const router = require("express").Router();
+
+const memeService = require("../services/meme");
+const genreService = require("../services/genre");
+const memeTemplates = require("../templates/memeTemplates");
+const uiTemplates = require("../templates/uiTemplates");
 
 const placeholder = '<div id="replaceMe">{{replaceMe}}</div>';
 
-const memeGenerator = (title, memeSrc, description, privacy, genreId) => {
-  return {
-    title,
-    memeSrc,
-    description,
-    privacy,
-    dateStamp: Date.now(),
-    genreId,
-  };
-};
-
-const defaultResponse = (respString, res) => {
-  res.writeHead(200, {
-    'Content-Type': 'text/html',
-  });
-  res.end(respString);
-};
-
-const fieldChecker = (obj) => {
-  for (const prop in obj) {
-    if (obj[prop] === '') {
-      return true;
+const getHome = (req, res) => {
+  fs.readFile("./views/home.html", (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
     }
-  }
+    res.writeHead(200, {
+      "Content-Type": "text/html",
+    });
+    res.end(data);
+  });
 };
 
 const viewAll = (req, res) => {
   memeService.getAll().then((data) => {
     data = data
       .sort((a, b) => b.dateStamp - a.dateStamp)
-      .filter((meme) => meme.privacy === 'on');
+      .filter((meme) => meme.privacy === "on");
 
-    let responseString = '';
+    let responseString = "";
     for (const meme of data) {
       responseString += memeTemplates.viewAll(meme._id, meme.memeSrc);
     }
 
-    fs.readFile('./views/viewAll.html', (err, html) => {
+    fs.readFile("./views/viewAll.html", (err, html) => {
       if (err) {
         console.log(err);
         return;
       }
       html = html.toString().replace(placeholder, responseString);
 
-      defaultResponse(html, res);
+      res.writeHead(200, {
+        "Content-Type": "text/html",
+      });
+      res.end(html);
     });
   });
 };
 
 const viewAddMeme = (req, res, status = null) => {
-  fs.readFile('./views/addMeme.html', (err, data) => {
+  fs.readFile("./views/addMeme.html", (err, data) => {
     if (err) {
       console.log(err);
       return;
     }
 
     genreService.getAll().then((genres) => {
-      let exitString = '';
-      console.log(genres);
+      let exitString = "";
 
       for (const genre of genres) {
         exitString += memeTemplates.genreOption(genre.id, genre.title);
       }
 
-      if (status === 'err') {
+      if (status === "err") {
         data = data.toString().replace(placeholder, uiTemplates.errorMessage());
       }
-      if (status === 'suc') {
+      if (status === "suc") {
         data = data
           .toString()
           .replace(placeholder, uiTemplates.successMessage());
       }
-      defaultResponse(
+
+      res.writeHead(200, {
+        "Content-Type": "text/html",
+      });
+      res.end(
         data
           .toString()
-          .replace('<div id="replaceMe2">{{replaceMe2}}</div>', exitString),
-        res
+          .replace('<div id="replaceMe2">{{replaceMe2}}</div>', exitString)
       );
     });
   });
@@ -106,30 +99,34 @@ const getDetails = (req, res) => {
         targetId
       );
 
-      fs.readFile('./views/details.html', (err, data) => {
+      fs.readFile("./views/details.html", (err, data) => {
         if (err) {
           console.log(err);
           return;
         }
         data = data.toString().replace(placeholder, replaceString);
-        defaultResponse(data, res);
+
+        res.writeHead(200, {
+          "Content-Type": "text/html",
+        });
+        res.end(data);
       });
     })
     .catch(() => {
-      res.end('Meme does not exist in database!');
+      res.end("Meme does not exist in database!");
     });
 };
 
 const addMeme = (req, res) => {
-  const fileName = shortid.generate() + '.jpg';
+  const fileName = shortid.generate() + ".jpg";
   const fields = req.body;
   const files = req.files;
 
   memeService.getAll().then((allMemes) => {
     const dirName = `/public/memeStorage/${Math.ceil(allMemes.length / 10)}`;
-    const relativeFilePath = dirName + '/' + fileName;
+    const relativeFilePath = dirName + "/" + fileName;
     const absoluteDirPath = path.join(__dirname, `../${dirName}`);
-    const absoluteFilePath = absoluteDirPath + '/' + fileName;
+    const absoluteFilePath = absoluteDirPath + "/" + fileName;
 
     fs.access(absoluteDirPath, (err) => {
       if (err) {
@@ -139,28 +136,37 @@ const addMeme = (req, res) => {
       files.meme.mv(absoluteFilePath, (err) => {
         if (err) {
           console.log(err);
-          viewAddMeme(req, res, 'err');
+          viewAddMeme(req, res, "err");
           return;
         }
 
-        if (fieldChecker(fields)) {
-          viewAddMeme(req, res, 'err');
+        let formIsInvalid = false;
+
+        for (const field in fields) {
+          if (fields[field] === "") {
+            formIsInvalid = true;
+          }
+        }
+
+        if (formIsInvalid) {
+          viewAddMeme(req, res, "err");
         } else {
-          const memeForImport = memeGenerator(
-            fields.memeTitle,
-            relativeFilePath,
-            fields.memeDescription,
-            fields.status,
-            fields.genreSelect
-          );
+          const memeForImport = {
+            title: fields.memeTitle,
+            memeSrc: relativeFilePath,
+            description: fields.memeDescription,
+            privacy: fields.status,
+            dateStamp: Date.now(),
+            genreId: fields.genreSelect,
+          };
 
           memeService
             .create(memeForImport)
             .then(() => {
-              viewAddMeme(req, res, 'suc');
+              viewAddMeme(req, res, "suc");
             })
             .catch(() => {
-              viewAddMeme(req, res, 'err');
+              viewAddMeme(req, res, "err");
             });
         }
       });
@@ -170,7 +176,7 @@ const addMeme = (req, res) => {
 
 const getSearchMeme = (req, res) => {
   genreService.getAll().then((genres) => {
-    fs.readFile('./views/searchMeme.html', (err, data) => {
+    fs.readFile("./views/searchMeme.html", (err, data) => {
       if (err) {
         console.log(err);
         return;
@@ -183,7 +189,11 @@ const getSearchMeme = (req, res) => {
       }
 
       data = data.toString().replace(placeholder, exitString);
-      defaultResponse(data, res);
+
+      res.writeHead(200, {
+        "Content-Type": "text/html",
+      });
+      res.end(data);
     });
   });
 };
@@ -197,7 +207,7 @@ const searchForMeme = (req, res) => {
 
   genreService.getAll().then((tags) => {
     memeService.getAll().then((memes) => {
-      if (selectedGenre !== 'all') {
+      if (selectedGenre !== "all") {
         const demo = tags.find((x) => {
           return x.id == selectedGenre;
         });
@@ -212,7 +222,7 @@ const searchForMeme = (req, res) => {
         sorted = memes;
       }
 
-      if (title !== '') {
+      if (title !== "") {
         sorted = sorted.filter((elem) => {
           if (elem.title.indexOf(title) !== -1) {
             return elem;
@@ -224,46 +234,68 @@ const searchForMeme = (req, res) => {
           return b.dateStamp - a.dateStamp;
         })
         .filter((meme) => {
-          return meme.privacy === 'on';
+          return meme.privacy === "on";
         });
 
-      let responseString = '';
+      let responseString = "";
       for (let meme of sorted) {
         responseString += `<div class="meme">
-					<a href="/memes/getDetails?id=${meme.id}">
+					<a href="/getDetails?id=${meme.id}">
 					<img class="memePoster" src="${meme.memeSrc}"/>          
 					</div>`;
       }
 
-      fs.readFile('./views/viewAll.html', (err, html) => {
+      fs.readFile("./views/viewAll.html", (err, html) => {
         if (err) {
           console.log(err);
           return;
         }
         html = html.toString().replace(placeholder, responseString);
 
-        defaultResponse(html, res);
+        res.writeHead(200, {
+          "Content-Type": "text/html",
+        });
+        res.end(html);
       });
     });
   });
 };
 
 const createGenreView = (req, res) => {
-  fs.readFile('./views/addGenre.html', (err, data) => {
+  fs.readFile("./views/addGenre.html", (err, data) => {
     if (err) {
       console.log(err);
     }
-    defaultResponse(data, res);
+
+    res.writeHead(200, {
+      "Content-Type": "text/html",
+    });
+    res.end(data);
   });
 };
 
+const deleteMeme = (req, res) => {
+  const memeId = req.params.id;
+  memeService
+    .delete(memeId)
+    .then(() => {
+      res.json({ location: "/viewAllMemes" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({ err: err });
+    });
+};
+
 router
-  .get('/viewAllMemes', (req, res) => viewAll(req, res))
-  .get('/addMeme', (req, res) => viewAddMeme(req, res))
-  .post('/addMeme', (req, res) => addMeme(req, res))
-  .get('/getDetails', (req, res) => getDetails(req, res))
-  .get('/searchMeme', (req, res) => getSearchMeme(req, res))
-  .get('/sSearchMeme', (req, res) => searchForMeme(req, res))
-  .get('/addGenre', (req, res) => createGenreView(req, res));
+  .get("/", getHome)
+  .get("/viewAllMemes", viewAll)
+  .get("/addMeme", viewAddMeme)
+  .post("/addMeme", addMeme)
+  .get("/getDetails", getDetails)
+  .get("/searchMeme", getSearchMeme)
+  .get("/sSearchMeme", searchForMeme)
+  .get("/addGenre", createGenreView)
+  .delete("/delete/:id", deleteMeme);
 
 module.exports = router;
