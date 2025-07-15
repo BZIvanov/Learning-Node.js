@@ -1,3 +1,5 @@
+# MongoDB session demo
+
 ## About
 
 This is example of how to use session on the backend with database and cookies on the client.
