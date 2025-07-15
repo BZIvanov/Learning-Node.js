@@ -121,3 +121,8 @@ Here are some useful examples you can run from the terminal in the project root 
 - `npm view <package> versions` - Lists all published versions of a specific package.
 
 > Tip: `npm help` or the [npm CLI docs](https://docs.npmjs.com/cli/v11) provide more commands for viewing metadata, managing cache, auditing vulnerabilities, and more.
+
+## Content of this section
+
+- **pre-post-commands**
+- **node-notes-app**
