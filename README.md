@@ -20,18 +20,19 @@ Below is the recommended learning path to get familiar with key parts of Node.js
 4. **Debugging** – Learn how to debug Node.js applications using VS Code and other tools.
 5. **NodeDependencies** – Learn about the underlying technologies like V8 and libuv that power Node.js.
 6. **Frameworks** – Overview of popular Node.js web frameworks like Express with basic usage and reference links.
-7. **EventLoop** – Understand how Node.js handles asynchronous operations behind the scenes.
-8. **Events** – Explore the `EventEmitter` class and how custom events work.
-9. **Buffers** – Work with binary data using Node.js buffers.
-10. **FileSystem** – Read from and write to files using the `fs` module.
-11. **Streams** – Learn about reading and writing data in chunks using streams.
-12. **Networking** – Build TCP/UDP servers and clients using the `net` and `dgram` modules.
-13. **Http** – Create HTTP servers and handle web requests.
-14. **UNIX** – Use Node.js to interact with Unix commands and system processes.
-15. **Compression** – Compress and decompress data using built-in modules like `zlib`.
-16. **MultiThreading** – Learn about worker threads and background processing.
-17. **Cryptography** – Use Node's `crypto` module for hashing, encryption, and secure operations.
-18. **Security** – Learn best practices for writing secure Node.js applications.
-19. **Integrations** – Working with external services like `Auth0`.
-20. **Tooling** – Task runners and utilities powered by Node.js.
-21. **RealTimeCommunication** – Build real-time features.
+7. **ViewEngines** – Server-side HTML templating with engines like Handlebars, EJS, and Pug.
+8. **EventLoop** – Understand how Node.js handles asynchronous operations behind the scenes.
+9. **Events** – Explore the `EventEmitter` class and how custom events work.
+10. **Buffers** – Work with binary data using Node.js buffers.
+11. **FileSystem** – Read from and write to files using the `fs` module.
+12. **Streams** – Learn about reading and writing data in chunks using streams.
+13. **Networking** – Build TCP/UDP servers and clients using the `net` and `dgram` modules.
+14. **Http** – Create HTTP servers and handle web requests.
+15. **UNIX** – Use Node.js to interact with Unix commands and system processes.
+16. **Compression** – Compress and decompress data using built-in modules like `zlib`.
+17. **MultiThreading** – Learn about worker threads and background processing.
+18. **Cryptography** – Use Node's `crypto` module for hashing, encryption, and secure operations.
+19. **Security** – Learn best practices for writing secure Node.js applications.
+20. **Integrations** – Working with external services like `Auth0`.
+21. **Tooling** – Task runners and utilities powered by Node.js.
+22. **RealTimeCommunication** – Build real-time features.
