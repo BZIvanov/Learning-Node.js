@@ -17,3 +17,4 @@ Check out [Nest.js repository](https://github.com/BZIvanov/Learning-NestJS) for 
 - **memes-demo-app** - demo app
 - **db-sessions**
 - **pg-demo**
+- **rest-api-demo**
