@@ -10,6 +10,8 @@ Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet wit
 
 Check out [SQL repository](https://github.com/BZIvanov/Learning-SQL) for learning materials for SQL databases.
 
+Check out [NoSQL repository](https://github.com/BZIvanov/Learning-NoSQL) for learning materials for NoSQL databases.
+
 ## Content
 
 Below is the recommended learning path to get familiar with key parts of Node.js:
