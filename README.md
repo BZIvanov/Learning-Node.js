@@ -2,6 +2,8 @@
 
 **Node.js** is asynchronous event driven javascript runtime.
 
+Recommended version of Node.js for this repo is 22 or higher.
+
 ## Cheat-sheets
 
 Check [here](https://github.com/LeCoupa/awesome-cheatsheets) for cheat-sheet with methods usage.

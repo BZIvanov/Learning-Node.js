@@ -126,3 +126,4 @@ Here are some useful examples you can run from the terminal in the project root 
 
 - **pre-post-commands**
 - **node-notes-app**
+- **esm-syntax**
