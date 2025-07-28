@@ -14,6 +14,10 @@ Check out [SQL repository](https://github.com/BZIvanov/Learning-SQL) for learnin
 
 Check out [NoSQL repository](https://github.com/BZIvanov/Learning-NoSQL) for learning materials for NoSQL databases.
 
+## Testing
+
+Check out [Jest repository](https://github.com/BZIvanov/Learning-Jest) for learning materials for testing with Jest.
+
 ## Content
 
 Below is the recommended learning path to get familiar with key parts of Node.js:
