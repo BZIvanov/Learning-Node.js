@@ -1,5 +1,7 @@
 # ESM Syntax
 
+For detailed info read the [official docs](https://nodejs.org/docs/latest/api/esm.html).
+
 To use **ESM (ECMAScript Modules)** syntax in Node.js, such as `import` instead of `require`, you need to do one of the following:
 
 **Option 1: Use `.mjs` file extension**

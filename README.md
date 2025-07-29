@@ -44,3 +44,4 @@ Below is the recommended learning path to get familiar with key parts of Node.js
 20. **Integrations** – Working with external services like `Auth0`.
 21. **Tooling** – Task runners and utilities powered by Node.js.
 22. **RealTimeCommunication** – Build real-time features.
+23. **TypeScript** – Learn how to set up and use TypeScript in Node.js projects.
