@@ -11,7 +11,10 @@ export const getTasks = (_req: Request, res: Response) => {
   res.status(200).json({ tasks });
 };
 
-export const createTask = (req: Request<{}, {}, ReqBody>, res: Response) => {
+export const createTask = (
+  req: Request<Record<string, never>, Record<string, never>, ReqBody>,
+  res: Response
+) => {
   const { text } = req.body;
   if (!text || typeof text !== "string") {
     return res.status(400).json({ message: "Invalid task text" });
@@ -27,7 +30,7 @@ export const createTask = (req: Request<{}, {}, ReqBody>, res: Response) => {
 };
 
 export const updateTask = (
-  req: Request<ReqParams, {}, ReqBody>,
+  req: Request<ReqParams, Record<string, never>, ReqBody>,
   res: Response
 ) => {
   const { id } = req.params;

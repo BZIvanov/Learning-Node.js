@@ -1,0 +1,25 @@
+# Node.js
+node_modules
+npm-debug.log*
+
+# Build output
+dist
+build
+coverage
+
+# Environment files
+.env
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Package managers
+package-lock.json
+
+# Logs
+*.log
+
+# Misc
+.vscode

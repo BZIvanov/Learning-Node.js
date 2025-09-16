@@ -8,11 +8,11 @@ This demo demonstrates a basic CRUD API for managing tasks in memory.
 
 In your project directory, you can run:
 
-| Script          | Description                       |
-| --------------- | --------------------------------- |
-| `npm run dev`   | Run the server using `ts-node`    |
-| `npm run build` | Compile TypeScript to JavaScript  |
-| `npm start`     | Run the compiled server (`dist/`) |
+| Script          | Description                        |
+| --------------- | ---------------------------------- |
+| `npm run dev`   | Run the server using `ts-node-dev` |
+| `npm run build` | Compile TypeScript to JavaScript   |
+| `npm start`     | Run the compiled server (`dist/`)  |
 
 ## API Endpoints
 

@@ -1,0 +1,31 @@
+# Node dependencies
+/node_modules
+
+# Build output
+/dist
+/build
+/coverage
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment files
+.env
+.env.*.local
+
+# Editor/IDE settings
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# TypeScript cache
+*.tsbuildinfo

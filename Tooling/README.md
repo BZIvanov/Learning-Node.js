@@ -14,4 +14,5 @@ To use ESLint install all the dependencies and create config files.
 
 ## Content of this section
 
-- **css-minification**
+- **css-minification** - minify css with gulp
+- **ts-eslint-prettier** - setup TypeScript with ESLint and Prettier
