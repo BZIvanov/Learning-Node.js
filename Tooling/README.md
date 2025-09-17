@@ -2,11 +2,15 @@
 
 ## Prettier
 
-To use Prettier install all the dependencies and create config files.
+To setup Prettier install the package `prettier` and create `.prettierrc` config file where you can configure the rules.
+
+You should also install the VS Code `Prettier` extension.
 
 ## ESLint
 
-To use ESLint install all the dependencies and create config files.
+To setup ESLint install the package `eslint` and run `npx eslint --init`. The default configuration will be generated based on your selections during setup. Later you can further extend it with additional plugins and rules.
+
+You should also install the VS Code `ESLint` extension.
 
 ## Gulp
 
