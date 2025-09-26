@@ -23,16 +23,19 @@ node index.js
 
 ## Debugging with Chrome DevTools
 
-You can also debug Node.js using Chrome DevTools:
+You can debug Node.js using Chrome DevTools. Run the below command (`src/server.js` is for example the starting point file of a server):
 
 ```bash
-node --inspect-brk index.js
+node --inspect-brk src/server.js
 ```
 
-Then open `chrome://inspect` in Chrome and click **Open dedicated DevTools for Node**.
+And follow the below steps:
 
-## Debugging with ndb
+1. Open Chrome and go to: `chrome://inspect`
+2. Click **Open dedicated DevTools for Node**. Alternatively you can click `inspect` under `Remote Target`
+3. Add breakpoints directly in DevTools or insert `debugger` statements in the code. When execution reaches them, Node will pause so you can step through and inspect state.
 
-For debugging use npm module **ndb** which makes debugging using Node.js very easy.
+### Notes
 
-In the package.json for scripts we need to specify, that we will start our app with ndb.
+- Use `--inspect` for normal debugging (starts immediately)
+- Use `--inspect-brk` if you need to debug the very beginning of app startup (Node will pause on the first line of code until you resume)
