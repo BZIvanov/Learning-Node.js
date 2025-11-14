@@ -93,8 +93,16 @@ npm install --save-dev nodemon
 - **Local** (default): Installed in your project's `node_modules` folder
 - **Global**: Installed system-wide and used from anywhere
 
+Here is how to install a package globally.
+
 ```bash
-npm install -g nodemon
+npm install -g package-name-here
+```
+
+The most reliable way to find the exact location of the **global node_modules folder** is to use the below command:
+
+```bash
+npm root -g
 ```
 
 ## node_modules and .gitignore
